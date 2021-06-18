@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarAccountDao">
+    <resultMap id="SugarAccount" type="jc.sugar.JiaHui.entity.SugarAccount">
+        <result column="id" property="id" javaType="java.lang.Integer"/>
+        <result column="username" property="username" javaType="java.lang.String"/>
+        <result column="email" property="email" javaType="java.lang.String"/>
+        <result column="salt" property="salt" javaType="java.lang.String"/>
+        <result column="password" property="password" javaType="java.lang.String"/>
+        <result column="avatar" property="avatar" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+    </resultMap>
+
+    <sql id="allColumns">
+        id, username, email, salt, create_time, update_time
+    </sql>
+
+    <!--
+        id - 标识符，可以被用来引用语句。对应dao接口中的一个方法
+        parameterType - 语句入参的类全限定名或别名。可选，mybatis有参数类型推断能力
+        parameterMap - 已被放弃
+        flushCache - 默认为true，只要语句被调用，都会导致本地缓存和二级缓存清空
+        timeout - 设置在抛出异常前，驱动程序等待数据库返回请求结果的秒数
+        statementType - STATEMENT|PREPARED|CALLABLE, 默认PREPARED
+        useGeneratedKeys - mybatis会使用JDBC的getGeneratedKeys方法取出由数据库内部生成的主键
+        keyProperty - 指定唯一识别的对象属性，mybatis会使用getGeneratedKeys的返回值或insert语句的selectKey子元素来设置它的值
+        keyColumn - 设置生成键值在表中的列名
+        databaseId - 如果设置了数据库厂商标识，mybatis会加载所有不带databaseId或匹配当前databaseId的语句
+    -->
+    <insert id="saveSugarAccount" parameterType="jc.sugar.JiaHui.entity.SugarAccount" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+
+
+
+    </insert>
+
+</mapper>

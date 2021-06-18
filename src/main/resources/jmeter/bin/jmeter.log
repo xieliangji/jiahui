@@ -1,0 +1,37 @@
+2021-05-19 16:26:22,489 INFO o.a.j.u.JMeterUtils: Setting Locale to zh_CN
+2021-05-19 16:26:22,498 INFO o.a.j.JMeter: Loading user properties from: user.properties
+2021-05-19 16:26:22,499 INFO o.a.j.JMeter: Loading system properties from: system.properties
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: Version 5.4.1
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: java.version=1.8.0_231
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: os.name=Windows 10
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: os.arch=amd64
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: os.version=10.0
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: file.encoding=GBK
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: java.awt.headless=null
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: Max memory     =3793747968
+2021-05-19 16:26:22,505 INFO o.a.j.JMeter: Available Processors =8
+2021-05-19 16:26:22,510 INFO o.a.j.JMeter: Default Locale=中文 (中国)
+2021-05-19 16:26:22,510 INFO o.a.j.JMeter: JMeter  Locale=中文 (中国)
+2021-05-19 16:26:22,510 INFO o.a.j.JMeter: JMeterHome=C:\Users\Administrator\Desktop\apache-jmeter-5.4.1
+2021-05-19 16:26:22,510 INFO o.a.j.JMeter: user.dir  =C:\Users\Administrator\Desktop\apache-jmeter-5.4.1\bin
+2021-05-19 16:26:22,511 INFO o.a.j.JMeter: PWD       =C:\Users\Administrator\Desktop\apache-jmeter-5.4.1\bin
+2021-05-19 16:26:22,511 INFO o.a.j.JMeter: IP: 192.168.17.234 Name: DESKTOP-BVSAGCN FullName: DESKTOP-BVSAGCN
+2021-05-19 16:26:22,562 INFO o.a.j.JMeter: Setting LAF to: com.github.weisj.darklaf.DarkLaf:com.github.weisj.darklaf.theme.IntelliJTheme
+2021-05-19 16:26:22,950 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2021-05-19 16:43:15,678 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-05-19 16:43:15,679 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-05-19 16:43:15,679 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-05-19 16:43:15,679 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2021-05-19 16:43:15,679 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2021-05-19 16:43:15,679 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2021-05-20 09:31:33,455 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2021-05-20 09:31:38,097 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2021-05-20 09:33:20,706 INFO o.a.j.s.FileServer: Default base='C:\Users\Administrator\Desktop\apache-jmeter-5.4.1\bin'
+2021-05-20 09:33:20,707 INFO o.a.j.s.FileServer: Set new base='C:\Users\Administrator\Desktop'
+2021-05-20 09:33:20,795 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2021-05-20 09:33:20,807 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2021-05-20 09:33:20,808 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2021-05-24 11:06:03,336 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must contain the string: '.functions.'
+2021-05-24 11:06:03,338 INFO o.a.j.e.u.CompoundVariable: Note: Function class names must not contain the string: '.gui.'
