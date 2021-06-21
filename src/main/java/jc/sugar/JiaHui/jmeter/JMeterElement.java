@@ -5,6 +5,12 @@ import org.apache.jmeter.config.gui.ArgumentsPanel;
 import org.apache.jmeter.config.gui.LoginConfigGui;
 import org.apache.jmeter.config.gui.SimpleConfigGui;
 import org.apache.jmeter.control.gui.*;
+import org.apache.jmeter.extractor.*;
+import org.apache.jmeter.extractor.gui.*;
+import org.apache.jmeter.extractor.json.jmespath.JMESPathExtractor;
+import org.apache.jmeter.extractor.json.jmespath.gui.JMESPathExtractorGui;
+import org.apache.jmeter.extractor.json.jsonpath.JSONPostProcessor;
+import org.apache.jmeter.extractor.json.jsonpath.gui.JSONPostProcessorGui;
 import org.apache.jmeter.modifiers.CounterConfig;
 import org.apache.jmeter.modifiers.SampleTimeout;
 import org.apache.jmeter.modifiers.UserParameters;
@@ -35,6 +41,8 @@ import org.apache.jmeter.protocol.java.config.JavaConfig;
 import org.apache.jmeter.protocol.java.config.gui.JavaConfigGui;
 import org.apache.jmeter.protocol.jdbc.config.DataSourceElement;
 import org.apache.jmeter.protocol.tcp.config.gui.TCPConfigGui;
+import org.apache.jmeter.reporters.ResultAction;
+import org.apache.jmeter.reporters.gui.ResultActionGui;
 import org.apache.jmeter.sampler.gui.TestActionGui;
 import org.apache.jmeter.testbeans.gui.TestBeanGUI;
 import org.apache.jmeter.threads.gui.PostThreadGroupGui;
@@ -112,6 +120,15 @@ public enum JMeterElement {
 
     JSR223PostProcessor(org.apache.jmeter.extractor.JSR223PostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     JDBCPostProcessor(org.apache.jmeter.protocol.jdbc.processor.JDBCPostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
+    HtmlExtractor(org.apache.jmeter.extractor.HtmlExtractor.class.getSimpleName(), HtmlExtractorGui.class.getSimpleName()),
+    JMESPathExtractor(org.apache.jmeter.extractor.json.jmespath.JMESPathExtractor.class.getSimpleName(), JMESPathExtractorGui.class.getSimpleName()),
+    JSONPostProcessor(org.apache.jmeter.extractor.json.jsonpath.JSONPostProcessor.class.getSimpleName(), JSONPostProcessorGui.class.getSimpleName()),
+    RegexExtractor(org.apache.jmeter.extractor.RegexExtractor.class.getSimpleName(), RegexExtractorGui.class.getSimpleName()),
+    BoundaryExtractor(org.apache.jmeter.extractor.BoundaryExtractor.class.getSimpleName(), BoundaryExtractorGui.class.getSimpleName()),
+    XPath2Extractor(org.apache.jmeter.extractor.XPath2Extractor.class.getSimpleName(), XPath2ExtractorGui.class.getSimpleName()),
+    XPathExtractor(org.apache.jmeter.extractor.XPathExtractor.class.getSimpleName(), XPathExtractorGui.class.getSimpleName()),
+    ResultAction(org.apache.jmeter.reporters.ResultAction.class.getSimpleName(), ResultActionGui.class.getSimpleName()),
+    DebugPostProcessor(org.apache.jmeter.extractor.DebugPostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
 
 
     JSR223Assertion(org.apache.jmeter.assertions.JSR223Assertion.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
