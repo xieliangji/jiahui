@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.sampler;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import jc.sugar.JiaHui.jmeter.configtestelement.ArgumentsMapper;
 import org.apache.jmeter.config.Argument;
 import org.apache.jmeter.config.Arguments;
@@ -13,7 +10,6 @@ import org.apache.jmeter.protocol.http.util.HTTPArgument;
 import org.apache.jmeter.protocol.http.util.HTTPFileArg;
 import org.apache.jmeter.protocol.http.util.HTTPFileArgs;
 import org.apache.jmeter.testelement.TestElement;
-import org.apache.jmeter.testelement.property.CollectionProperty;
 import org.apache.jmeter.testelement.property.PropertyIterator;
 import org.apache.jmeter.testelement.property.TestElementProperty;
 
@@ -24,7 +20,7 @@ import java.util.Map;
 
 import static org.apache.jorphan.util.Converter.*;
 
-@JMeterElementMapperFor(JMeterElementType.HttpTestSample)
+@JMeterElementMapperFor(value = JMeterElementType.HttpTestSample, testGuiClass = JMeterElement.HttpTestSample)
 public class HttpSamplerMapper extends JMeterElementMapperRoot<HTTPSamplerProxy> {
 
     /**

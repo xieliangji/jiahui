@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.jmeter.sampler;
 
+import jc.sugar.JiaHui.jmeter.JMeterElement;
 import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
 import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
@@ -13,7 +14,7 @@ import java.util.Map;
  * 2021/5/25 10:50
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.JSR223Sampler)
+@JMeterElementMapperFor(value = JMeterElementType.JSR223Sampler, testGuiClass = JMeterElement.JSR223Sampler)
 public class JSR223SamplerMapper extends JSR223ElementMapper<JSR223Sampler>{
 
 

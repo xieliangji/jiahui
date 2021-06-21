@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.configtestelement;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.config.Argument;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.testelement.TestElement;
@@ -20,7 +17,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * 2021/5/24 17:09
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.Arguments)
+@JMeterElementMapperFor(value = JMeterElementType.Arguments, testGuiClass = JMeterElement.Arguments)
 public class ArgumentsMapper extends JMeterElementMapperRoot<Arguments> {
 
     //+ JMX field names - do not change values.

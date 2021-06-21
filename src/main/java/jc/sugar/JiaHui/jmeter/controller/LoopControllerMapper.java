@@ -15,7 +15,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * 2021/5/25 17:47
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.LoopController)
+@JMeterElementMapperFor(value = JMeterElementType.LoopController, testGuiClass = JMeterElement.LoopController)
 public class LoopControllerMapper extends JMeterElementMapperRoot<LoopController> {
 
     //+ JMX field names - do not change values.

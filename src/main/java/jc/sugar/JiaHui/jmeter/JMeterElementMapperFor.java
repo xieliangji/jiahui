@@ -10,4 +10,6 @@ import java.lang.annotation.Target;
 public @interface JMeterElementMapperFor {
 
     String value();
+
+    JMeterElement testGuiClass() default JMeterElement.TestGuiClassNull;
 }

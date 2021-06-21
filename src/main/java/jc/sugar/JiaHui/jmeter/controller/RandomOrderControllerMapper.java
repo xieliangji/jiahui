@@ -1,15 +1,12 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.RandomOrderController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@JMeterElementMapperFor(JMeterElementType.RandomOrderController)
+@JMeterElementMapperFor(value = JMeterElementType.RandomOrderController, testGuiClass = JMeterElement.RandomOrderController)
 public class RandomOrderControllerMapper extends JMeterElementMapperRoot<RandomOrderController> {
     private RandomOrderControllerMapper(RandomOrderController element, Map<String, Object> attributes) {
         super(element, attributes);

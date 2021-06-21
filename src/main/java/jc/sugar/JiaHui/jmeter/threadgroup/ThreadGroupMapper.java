@@ -22,7 +22,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * 2021/5/25 17:38
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.ThreadGroup)
+@JMeterElementMapperFor(value = JMeterElementType.ThreadGroup, testGuiClass = JMeterElement.ThreadGroup)
 public class ThreadGroupMapper extends JMeterElementMapperRoot<ThreadGroup> {
     //+ MAP key names - do not change the string values
     public static final String WEB_RAMP_TIME = "rampTime";

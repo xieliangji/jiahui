@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.RunTime;
 
 import java.util.HashMap;
@@ -11,7 +8,7 @@ import java.util.Map;
 
 import static org.apache.jorphan.util.Converter.getLong;
 
-@JMeterElementMapperFor(JMeterElementType.RunTime)
+@JMeterElementMapperFor(value = JMeterElementType.RunTime, testGuiClass = JMeterElement.RunTime)
 public class RunTimeMapper extends JMeterElementMapperRoot<RunTime> {
     public static final String WEB_SECONDS = "seconds";
 

@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.IfController;
 
 import java.util.HashMap;
@@ -13,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 
-@JMeterElementMapperFor(JMeterElementType.IfController)
+@JMeterElementMapperFor(value = JMeterElementType.IfController, testGuiClass = JMeterElement.IfController)
 public class IfControllerMapper extends JMeterElementMapperRoot<IfController> {
 
     public static final String WEB_CONDITION = "condition";

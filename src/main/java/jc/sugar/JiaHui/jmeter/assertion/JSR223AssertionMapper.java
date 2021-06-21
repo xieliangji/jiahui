@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.jmeter.assertion;
 
+import jc.sugar.JiaHui.jmeter.JMeterElement;
 import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
 import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
@@ -13,7 +14,7 @@ import java.util.Map;
  * 2021/5/25 10:22
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.JSR223Assertion)
+@JMeterElementMapperFor(value = JMeterElementType.JSR223Assertion, testGuiClass = JMeterElement.JSR223Assertion)
 public class JSR223AssertionMapper extends JSR223ElementMapper<JSR223Assertion> {
 
     private JSR223AssertionMapper(JSR223Assertion element, Map<String, Object> attributes) {

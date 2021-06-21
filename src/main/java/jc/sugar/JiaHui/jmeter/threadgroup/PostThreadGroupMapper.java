@@ -1,13 +1,12 @@
 package jc.sugar.JiaHui.jmeter.threadgroup;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.threads.PostThreadGroup;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@JMeterElementMapperFor(value = JMeterElementType.PostThreadGroup, testGuiClass = JMeterElement.PostThreadGroup)
 public class PostThreadGroupMapper extends JMeterElementMapperRoot<PostThreadGroup> {
     private PostThreadGroupMapper(PostThreadGroup element, Map<String, Object> attributes) {
         super(element, attributes);

@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.jmeter.postprocessor;
 
+import jc.sugar.JiaHui.jmeter.JMeterElement;
 import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
 import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
@@ -14,7 +15,7 @@ import java.util.Map;
  * 2021/5/25 10:46
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.JSR223PostProcessor)
+@JMeterElementMapperFor(value = JMeterElementType.JSR223PostProcessor, testGuiClass = JMeterElement.JSR223PostProcessor)
 public class JSR223PostprocessorMapper extends JSR223ElementMapper<JSR223PostProcessor> {
 
 

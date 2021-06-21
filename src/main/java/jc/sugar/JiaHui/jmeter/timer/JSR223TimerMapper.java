@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.jmeter.timer;
 
+import jc.sugar.JiaHui.jmeter.JMeterElement;
 import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
 import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
@@ -9,7 +10,7 @@ import org.apache.jmeter.timers.JSR223Timer;
 import java.util.HashMap;
 import java.util.Map;
 
-@JMeterElementMapperFor(JMeterElementType.JSR223Timer)
+@JMeterElementMapperFor(value = JMeterElementType.JSR223Timer, testGuiClass = JMeterElement.JSR223Timer)
 public class JSR223TimerMapper extends JSR223ElementMapper<JSR223Timer> {
     private JSR223TimerMapper(JSR223Timer element, Map<String, Object> attributes) {
         super(element, attributes);

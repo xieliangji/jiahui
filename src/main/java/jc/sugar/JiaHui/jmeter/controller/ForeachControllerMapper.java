@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.ForeachController;
 
 import java.util.HashMap;
@@ -12,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
-@JMeterElementMapperFor(JMeterElementType.ForeachController)
+@JMeterElementMapperFor(value = JMeterElementType.ForeachController, testGuiClass = JMeterElement.ForeachController)
 public class ForeachControllerMapper extends JMeterElementMapperRoot<ForeachController> {
     public static final String WEB_INPUT_VAL = "inputVal";
 

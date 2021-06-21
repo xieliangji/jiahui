@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.testplan;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import jc.sugar.JiaHui.jmeter.configtestelement.ArgumentsMapper;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.testelement.TestPlan;
@@ -18,7 +15,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * 2021/5/21 17:27
  * Code by 谢良基
  */
-@JMeterElementMapperFor(JMeterElementType.TestPlan)
+@JMeterElementMapperFor(value = JMeterElementType.TestPlan, testGuiClass = JMeterElement.TestPlan)
 public class TestPlanMapper extends JMeterElementMapperRoot<TestPlan> {
     //+ JMX field names - do not change values
     private static final String FUNCTIONAL_MODE = "TestPlan.functional_mode"; //$NON-NLS-1$

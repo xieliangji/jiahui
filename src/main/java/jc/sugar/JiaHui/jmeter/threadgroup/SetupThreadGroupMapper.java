@@ -1,15 +1,12 @@
 package jc.sugar.JiaHui.jmeter.threadgroup;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.threads.SetupThreadGroup;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@JMeterElementMapperFor(JMeterElementType.SetupThreadGroup)
+@JMeterElementMapperFor(value = JMeterElementType.SetupThreadGroup, testGuiClass = JMeterElement.SetupThreadGroup)
 public class SetupThreadGroupMapper extends JMeterElementMapperRoot<SetupThreadGroup> {
     private SetupThreadGroupMapper(SetupThreadGroup element, Map<String, Object> attributes) {
         super(element, attributes);

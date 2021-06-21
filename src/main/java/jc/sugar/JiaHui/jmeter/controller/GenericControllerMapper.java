@@ -1,15 +1,12 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.GenericController;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@JMeterElementMapperFor(JMeterElementType.GenericController)
+@JMeterElementMapperFor(value = JMeterElementType.GenericController, testGuiClass = JMeterElement.GenericController)
 public class GenericControllerMapper extends JMeterElementMapperRoot<GenericController> {
     private GenericControllerMapper(GenericController element, Map<String, Object> attributes) {
         super(element, attributes);

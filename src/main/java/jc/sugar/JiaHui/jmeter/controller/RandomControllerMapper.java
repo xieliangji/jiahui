@@ -1,9 +1,6 @@
 package jc.sugar.JiaHui.jmeter.controller;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
-import jc.sugar.JiaHui.jmeter.JMeterElementType;
+import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.RandomController;
 
 import java.util.HashMap;
@@ -11,7 +8,7 @@ import java.util.Map;
 
 import static org.apache.jorphan.util.Converter.getInt;
 
-@JMeterElementMapperFor(JMeterElementType.RandomController)
+@JMeterElementMapperFor(value = JMeterElementType.RandomController, testGuiClass = JMeterElement.RandomController)
 public class RandomControllerMapper extends JMeterElementMapperRoot<RandomController> {
     public static final String WEB_STYLE = "style";
 
