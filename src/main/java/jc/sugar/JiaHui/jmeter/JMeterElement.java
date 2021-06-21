@@ -6,7 +6,11 @@ import org.apache.jmeter.config.gui.LoginConfigGui;
 import org.apache.jmeter.config.gui.SimpleConfigGui;
 import org.apache.jmeter.control.gui.*;
 import org.apache.jmeter.modifiers.CounterConfig;
+import org.apache.jmeter.modifiers.SampleTimeout;
+import org.apache.jmeter.modifiers.UserParameters;
 import org.apache.jmeter.modifiers.gui.CounterConfigGui;
+import org.apache.jmeter.modifiers.gui.SampleTimeoutGui;
+import org.apache.jmeter.modifiers.gui.UserParametersGui;
 import org.apache.jmeter.protocol.ftp.config.gui.FtpConfigGui;
 import org.apache.jmeter.protocol.ftp.control.gui.FtpTestSamplerGui;
 import org.apache.jmeter.protocol.http.config.gui.HttpDefaultsGui;
@@ -20,6 +24,12 @@ import org.apache.jmeter.protocol.http.gui.CacheManagerGui;
 import org.apache.jmeter.protocol.http.gui.CookiePanel;
 import org.apache.jmeter.protocol.http.gui.DNSCachePanel;
 import org.apache.jmeter.protocol.http.gui.HeaderPanel;
+import org.apache.jmeter.protocol.http.modifier.AnchorModifier;
+import org.apache.jmeter.protocol.http.modifier.RegExUserParameters;
+import org.apache.jmeter.protocol.http.modifier.URLRewritingModifier;
+import org.apache.jmeter.protocol.http.modifier.gui.AnchorModifierGui;
+import org.apache.jmeter.protocol.http.modifier.gui.RegExUserParametersGui;
+import org.apache.jmeter.protocol.http.modifier.gui.URLRewritingModifierGui;
 import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
 import org.apache.jmeter.protocol.java.config.JavaConfig;
 import org.apache.jmeter.protocol.java.config.gui.JavaConfigGui;
@@ -93,6 +103,12 @@ public enum JMeterElement {
 
     JSR223PreProcessor(org.apache.jmeter.modifiers.JSR223PreProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     JDBCPreProcessor(org.apache.jmeter.protocol.jdbc.processor.JDBCPreProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
+    UserParameters(org.apache.jmeter.modifiers.UserParameters.class.getSimpleName(), UserParametersGui.class.getSimpleName()),
+    AnchorModifier(org.apache.jmeter.protocol.http.modifier.AnchorModifier.class.getSimpleName(), AnchorModifierGui.class.getSimpleName()),
+    URLRewritingModifier(org.apache.jmeter.protocol.http.modifier.URLRewritingModifier.class.getSimpleName(), URLRewritingModifierGui.class.getSimpleName()),
+    SampleTimeout(org.apache.jmeter.modifiers.SampleTimeout.class.getSimpleName(), SampleTimeoutGui.class.getSimpleName()),
+    RegExUserParameters(org.apache.jmeter.protocol.http.modifier.RegExUserParameters.class.getSimpleName(), RegExUserParametersGui.class.getSimpleName()),
+
 
     JSR223PostProcessor(org.apache.jmeter.extractor.JSR223PostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     JDBCPostProcessor(org.apache.jmeter.protocol.jdbc.processor.JDBCPostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
