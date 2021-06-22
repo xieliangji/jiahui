@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.jmeter;
 
+import org.apache.jmeter.testelement.AbstractScopedTestElement;
 import org.apache.jmeter.testelement.TestElement;
 
 import java.util.Map;
@@ -8,6 +9,11 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 public abstract class JMeterElementMapperRoot<T extends TestElement> implements JMeterElementMapper<T> {
+
+    // +JMX scope property name.
+    public static final String SCOPE = "Sample.scope";
+
+    public static final String SCOPE_VARIABLE_NAME = "Scope.variable";
 
     public static final String WEB_ID = "id";
 
@@ -24,6 +30,11 @@ public abstract class JMeterElementMapperRoot<T extends TestElement> implements 
     public static final String WEB_ENABLED = "enabled";
 
     public static final String WEB_COMMENTS = "comments";
+
+
+    public static final String WEB_SCOPE = "scope";
+
+    public static final String WEB_SCOPE_VARIABLE_NAME = "variable";
 
 
     protected T element;
@@ -45,6 +56,10 @@ public abstract class JMeterElementMapperRoot<T extends TestElement> implements 
             attributes.put(WEB_TESTNAME, element.getName());
             attributes.put(WEB_COMMENTS, element.getComment());
             attributes.put(WEB_ENABLED, element.isEnabled());
+            if(element instanceof AbstractScopedTestElement){
+                attributes.put(WEB_SCOPE, element.getPropertyAsString(SCOPE));
+                attributes.put(WEB_SCOPE_VARIABLE_NAME, element.getPropertyAsString(SCOPE_VARIABLE_NAME));
+            }
         } else{
             // map 不为空，则是从map to element
             element.setProperty(TestElement.GUI_CLASS, getString(attributes.get(WEB_GUICLASS)));
@@ -52,7 +67,12 @@ public abstract class JMeterElementMapperRoot<T extends TestElement> implements 
             element.setProperty(TestElement.NAME, getString(attributes.get(WEB_TESTNAME)));
             element.setProperty(TestElement.COMMENTS, getString(attributes.get(WEB_COMMENTS)));
             element.setProperty(TestElement.ENABLED, getBoolean(attributes.get(WEB_ENABLED)));
+            if(element instanceof AbstractScopedTestElement){
+                element.setProperty(SCOPE, getString(attributes.get(WEB_SCOPE)));
+                if(getString(attributes.get(WEB_SCOPE)).equals("variable")){
+                    element.setProperty(SCOPE_VARIABLE_NAME, getString(attributes.get(WEB_SCOPE_VARIABLE_NAME)));
+                }
+            }
         }
     }
-
 }
