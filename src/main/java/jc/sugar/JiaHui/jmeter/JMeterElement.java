@@ -1,59 +1,45 @@
 package jc.sugar.JiaHui.jmeter;
 
-import org.apache.jmeter.config.*;
+import org.apache.jmeter.assertions.XMLAssertion;
+import org.apache.jmeter.assertions.gui.*;
+import org.apache.jmeter.assertions.jmespath.gui.JMESPathAssertionGui;
+import org.apache.jmeter.config.ConfigTestElement;
 import org.apache.jmeter.config.gui.ArgumentsPanel;
 import org.apache.jmeter.config.gui.LoginConfigGui;
 import org.apache.jmeter.config.gui.SimpleConfigGui;
 import org.apache.jmeter.control.gui.*;
-import org.apache.jmeter.extractor.*;
 import org.apache.jmeter.extractor.gui.*;
-import org.apache.jmeter.extractor.json.jmespath.JMESPathExtractor;
 import org.apache.jmeter.extractor.json.jmespath.gui.JMESPathExtractorGui;
-import org.apache.jmeter.extractor.json.jsonpath.JSONPostProcessor;
 import org.apache.jmeter.extractor.json.jsonpath.gui.JSONPostProcessorGui;
-import org.apache.jmeter.modifiers.CounterConfig;
-import org.apache.jmeter.modifiers.SampleTimeout;
-import org.apache.jmeter.modifiers.UserParameters;
 import org.apache.jmeter.modifiers.gui.CounterConfigGui;
 import org.apache.jmeter.modifiers.gui.SampleTimeoutGui;
 import org.apache.jmeter.modifiers.gui.UserParametersGui;
 import org.apache.jmeter.protocol.ftp.config.gui.FtpConfigGui;
 import org.apache.jmeter.protocol.ftp.control.gui.FtpTestSamplerGui;
 import org.apache.jmeter.protocol.http.config.gui.HttpDefaultsGui;
-import org.apache.jmeter.protocol.http.control.CacheManager;
-import org.apache.jmeter.protocol.http.control.CookieManager;
-import org.apache.jmeter.protocol.http.control.DNSCacheManager;
-import org.apache.jmeter.protocol.http.control.HeaderManager;
 import org.apache.jmeter.protocol.http.control.gui.AjpSamplerGui;
 import org.apache.jmeter.protocol.http.control.gui.HttpTestSampleGui;
 import org.apache.jmeter.protocol.http.gui.CacheManagerGui;
 import org.apache.jmeter.protocol.http.gui.CookiePanel;
 import org.apache.jmeter.protocol.http.gui.DNSCachePanel;
 import org.apache.jmeter.protocol.http.gui.HeaderPanel;
-import org.apache.jmeter.protocol.http.modifier.AnchorModifier;
-import org.apache.jmeter.protocol.http.modifier.RegExUserParameters;
-import org.apache.jmeter.protocol.http.modifier.URLRewritingModifier;
 import org.apache.jmeter.protocol.http.modifier.gui.AnchorModifierGui;
 import org.apache.jmeter.protocol.http.modifier.gui.RegExUserParametersGui;
 import org.apache.jmeter.protocol.http.modifier.gui.URLRewritingModifierGui;
 import org.apache.jmeter.protocol.http.sampler.HTTPSamplerProxy;
-import org.apache.jmeter.protocol.java.config.JavaConfig;
 import org.apache.jmeter.protocol.java.config.gui.JavaConfigGui;
 import org.apache.jmeter.protocol.jdbc.config.DataSourceElement;
 import org.apache.jmeter.protocol.tcp.config.gui.TCPConfigGui;
-import org.apache.jmeter.reporters.ResultAction;
 import org.apache.jmeter.reporters.gui.ResultActionGui;
 import org.apache.jmeter.sampler.gui.TestActionGui;
 import org.apache.jmeter.testbeans.gui.TestBeanGUI;
 import org.apache.jmeter.threads.gui.PostThreadGroupGui;
 import org.apache.jmeter.threads.gui.SetupThreadGroupGui;
 import org.apache.jmeter.threads.gui.ThreadGroupGui;
-import org.apache.jmeter.timers.*;
 import org.apache.jmeter.timers.gui.ConstantTimerGui;
 import org.apache.jmeter.timers.gui.GaussianRandomTimerGui;
 import org.apache.jmeter.timers.gui.PoissonRandomTimerGui;
 import org.apache.jmeter.timers.gui.UniformRandomTimerGui;
-import org.apache.jmeter.timers.poissonarrivals.PreciseThroughputTimer;
 
 public enum JMeterElement {
     TestGuiClassNull(null, null),
@@ -117,7 +103,6 @@ public enum JMeterElement {
     SampleTimeout(org.apache.jmeter.modifiers.SampleTimeout.class.getSimpleName(), SampleTimeoutGui.class.getSimpleName()),
     RegExUserParameters(org.apache.jmeter.protocol.http.modifier.RegExUserParameters.class.getSimpleName(), RegExUserParametersGui.class.getSimpleName()),
 
-
     JSR223PostProcessor(org.apache.jmeter.extractor.JSR223PostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     JDBCPostProcessor(org.apache.jmeter.protocol.jdbc.processor.JDBCPostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     HtmlExtractor(org.apache.jmeter.extractor.HtmlExtractor.class.getSimpleName(), HtmlExtractorGui.class.getSimpleName()),
@@ -130,8 +115,19 @@ public enum JMeterElement {
     ResultAction(org.apache.jmeter.reporters.ResultAction.class.getSimpleName(), ResultActionGui.class.getSimpleName()),
     DebugPostProcessor(org.apache.jmeter.extractor.DebugPostProcessor.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
 
-
     JSR223Assertion(org.apache.jmeter.assertions.JSR223Assertion.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
+    ResponseAssertion(org.apache.jmeter.assertions.ResponseAssertion.class.getSimpleName(), AssertionGui.class.getSimpleName()),
+    JSONPathAssertion(org.apache.jmeter.assertions.JSONPathAssertion.class.getSimpleName(), JSONPathAssertionGui.class.getSimpleName()),
+    SizeAssertion(org.apache.jmeter.assertions.SizeAssertion.class.getSimpleName(), SizeAssertionGui.class.getSimpleName()),
+    XPath2Assertion(org.apache.jmeter.assertions.XPath2Assertion.class.getSimpleName(), XPath2AssertionGui.class.getSimpleName()),
+    HTMLAssertion(org.apache.jmeter.assertions.HTMLAssertion.class.getSimpleName(), HTMLAssertionGui.class.getSimpleName()),
+    JMESPathAssertion(org.apache.jmeter.assertions.jmespath.JMESPathAssertion.class.getSimpleName(), JMESPathAssertionGui.class.getSimpleName()),
+    MD5HexAssertion(org.apache.jmeter.assertions.MD5HexAssertion.class.getSimpleName(), MD5HexAssertionGUI.class.getSimpleName()),
+    XMLSchemaAssertion(org.apache.jmeter.assertions.XMLSchemaAssertion.class.getSimpleName(), XMLSchemaAssertionGUI.class.getSimpleName()),
+    XMLAssertion(org.apache.jmeter.assertions.XMLAssertion.class.getSimpleName(), XMLAssertionGui.class.getSimpleName()),
+    XPathAssertion(org.apache.jmeter.assertions.XPathAssertion.class.getSimpleName(), XPathAssertionGui.class.getSimpleName()),
+    DurationAssertion(org.apache.jmeter.assertions.DurationAssertion.class.getSimpleName(), DurationAssertionGui.class.getSimpleName()),
+    CompareAssertion(org.apache.jmeter.assertions.CompareAssertion.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
 
     JSR223Timer(org.apache.jmeter.timers.JSR223Timer.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     ConstantTimer(org.apache.jmeter.timers.ConstantTimer.class.getSimpleName(), ConstantTimerGui.class.getSimpleName()),
@@ -140,13 +136,13 @@ public enum JMeterElement {
     ConstantThroughputTimer(org.apache.jmeter.timers.ConstantThroughputTimer.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     SyncTimer(org.apache.jmeter.timers.SyncTimer.class.getSimpleName(), TestBeanGUI.class.getSimpleName()),
     PoissonRandomTimer(org.apache.jmeter.timers.PoissonRandomTimer.class.getSimpleName(), PoissonRandomTimerGui.class.getSimpleName()),
-    GaussianRandomTimer(org.apache.jmeter.timers.GaussianRandomTimer.class.getSimpleName(), GaussianRandomTimerGui.class.getSimpleName()),
-    ;
-
+    GaussianRandomTimer(org.apache.jmeter.timers.GaussianRandomTimer.class.getSimpleName(), GaussianRandomTimerGui.class.getSimpleName()),;
 
 
     private String testClass;
+
     private String guiClass;
+
     JMeterElement(String testClass, String guiClass){
         this.testClass = testClass;
         this.guiClass = guiClass;
