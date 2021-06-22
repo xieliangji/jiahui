@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.KeystoreConfig, testGuiClass = JMeterElement.KeystoreConfig)
-public class KeystoreConfigMapper extends JMeterElementMapperRoot<KeystoreConfig> {
+public class KeystoreConfigMapper extends AbstractJMeterElementMapper<KeystoreConfig> {
     public static final String WEB_PRELOAD = "preload";
 
     public static final String WEB_CLIENT_CERT_ALIAS_VAR_NAME = "clientCertAliasVarName";

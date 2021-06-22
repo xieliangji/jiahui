@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.XPath2Extractor, testGuiClass = JMeterElement.XPath2Extractor)
-public class XPath2ExtractorMapper extends JMeterElementMapperRoot<XPath2Extractor> {
+public class XPath2ExtractorMapper extends AbstractJMeterElementMapper<XPath2Extractor> {
 
     public static final String WEB_REF_NAME = "refName";
 

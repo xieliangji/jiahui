@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.CriticalSectionController, testGuiClass = JMeterElement.CriticalSectionController)
-public class CriticalSectionControllerMapper extends JMeterElementMapperRoot<CriticalSectionController> {
+public class CriticalSectionControllerMapper extends AbstractJMeterElementMapper<CriticalSectionController> {
     public static final String WEB_LOCK_NAME = "lockName";
 
     private CriticalSectionControllerMapper(CriticalSectionController element, Map<String, Object> attributes) {

@@ -11,7 +11,7 @@ import static org.apache.jorphan.util.Converter.getString;
 
 
 @JMeterElementMapperFor(value = JMeterElementType.IfController, testGuiClass = JMeterElement.IfController)
-public class IfControllerMapper extends JMeterElementMapperRoot<IfController> {
+public class IfControllerMapper extends AbstractJMeterElementMapper<IfController> {
 
     public static final String WEB_CONDITION = "condition";
 

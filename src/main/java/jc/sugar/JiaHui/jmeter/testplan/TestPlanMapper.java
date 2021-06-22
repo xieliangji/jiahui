@@ -16,7 +16,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * Code by 谢良基
  */
 @JMeterElementMapperFor(value = JMeterElementType.TestPlan, testGuiClass = JMeterElement.TestPlan)
-public class TestPlanMapper extends JMeterElementMapperRoot<TestPlan> {
+public class TestPlanMapper extends AbstractJMeterElementMapper<TestPlan> {
     //+ JMX field names - do not change values
     private static final String FUNCTIONAL_MODE = "TestPlan.functional_mode"; //$NON-NLS-1$
 

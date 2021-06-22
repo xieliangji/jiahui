@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getInt;
 
 @JMeterElementMapperFor(value = JMeterElementType.InterleaveControl, testGuiClass = JMeterElement.InterleaveControl)
-public class InterleaveControlMapper extends JMeterElementMapperRoot<InterleaveControl> {
+public class InterleaveControlMapper extends AbstractJMeterElementMapper<InterleaveControl> {
     public static final String WEB_STYLE = "style";
 
     public static final String WEB_ACCROSS_THREADS = "accrossThreads";

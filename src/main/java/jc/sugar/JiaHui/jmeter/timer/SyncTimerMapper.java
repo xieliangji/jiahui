@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.SyncTimer, testGuiClass = JMeterElement.SyncTimer)
-public class SyncTimerMapper extends JMeterElementMapperRoot<SyncTimer> {
+public class SyncTimerMapper extends AbstractJMeterElementMapper<SyncTimer> {
 
     public static final String WEB_GROUP_SIZE = "groupSize";
 

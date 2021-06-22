@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getLong;
 
 @JMeterElementMapperFor(value = JMeterElementType.RunTime, testGuiClass = JMeterElement.RunTime)
-public class RunTimeMapper extends JMeterElementMapperRoot<RunTime> {
+public class RunTimeMapper extends AbstractJMeterElementMapper<RunTime> {
     public static final String WEB_SECONDS = "seconds";
 
     private RunTimeMapper(RunTime element, Map<String, Object> attributes) {

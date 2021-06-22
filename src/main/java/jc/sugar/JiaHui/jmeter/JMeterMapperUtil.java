@@ -29,7 +29,7 @@ public class JMeterMapperUtil {
     }
 
     public static TestElement buildJMeterElement(Map<String, Object> attributes) throws JMeterTestElementMapperException {
-        String elementType = getString(attributes.get(JMeterElementMapperRoot.WEB_TYPE));
+        String elementType = getString(attributes.get(AbstractJMeterElementMapper.WEB_TYPE));
         Class<? extends JMeterElementMapper> mapperClass = JMETER_ELEMENT_MAPPERS.get(elementType);
         if(mapperClass == null){
             throw new JMeterTestElementMapperException("Not Found Element Mapper for Type [" + elementType + "]");

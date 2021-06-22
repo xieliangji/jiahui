@@ -4,7 +4,6 @@ import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.protocol.http.control.Cookie;
 import org.apache.jmeter.protocol.http.control.CookieManager;
 import org.apache.jmeter.testelement.property.JMeterProperty;
-import org.apache.jmeter.testelement.property.PropertyIterator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.*;
 
 @JMeterElementMapperFor(value = JMeterElementType.CookieManager, testGuiClass = JMeterElement.CookieManager)
-public class CookieManagerMapper extends JMeterElementMapperRoot<CookieManager> {
+public class CookieManagerMapper extends AbstractJMeterElementMapper<CookieManager> {
 
     public static final String WEB_CLEAR_EACH_ITERATION = "clearEachIteration";
 

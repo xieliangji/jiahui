@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.RegExUserParameters, testGuiClass = JMeterElement.RegExUserParameters)
-public class RegExUserParametersMapper extends JMeterElementMapperRoot<RegExUserParameters> {
+public class RegExUserParametersMapper extends AbstractJMeterElementMapper<RegExUserParameters> {
 
     public static final String WEB_REGEX_REF_NAME = "regexRefName";
 

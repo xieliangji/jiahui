@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.HtmlExtractor, testGuiClass = JMeterElement.HtmlExtractor)
-public class HtmlExtractorMapper extends JMeterElementMapperRoot<HtmlExtractor> {
+public class HtmlExtractorMapper extends AbstractJMeterElementMapper<HtmlExtractor> {
 
     public static final String WEB_EXTRACTOR_IMPL = "extractorImpl";
 

@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.URLRewritingModifier, testGuiClass = JMeterElement.URLRewritingModifier)
-public class URLRewritingModifierMapper extends JMeterElementMapperRoot<URLRewritingModifier> {
+public class URLRewritingModifierMapper extends AbstractJMeterElementMapper<URLRewritingModifier> {
 
     public static final String WEB_ARGUMENT_NAME = "argumentName";
 

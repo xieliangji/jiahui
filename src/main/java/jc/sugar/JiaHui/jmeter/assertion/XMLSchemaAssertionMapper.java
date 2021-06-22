@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.XMLSchemaAssertion, testGuiClass = JMeterElement.XMLSchemaAssertion)
-public class XMLSchemaAssertionMapper extends JMeterElementMapperRoot<XMLSchemaAssertion> {
+public class XMLSchemaAssertionMapper extends AbstractJMeterElementMapper<XMLSchemaAssertion> {
 
     public static final String WEB_XML_SCHEMA_ASSERTION_FILENAME = "xmlSchemaAssertionFilename";
 

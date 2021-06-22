@@ -1,7 +1,7 @@
 package jc.sugar.JiaHui.jmeter.configtestelement;
 
 import jc.sugar.JiaHui.jmeter.JMeterElementCategory;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
+import jc.sugar.JiaHui.jmeter.AbstractJMeterElementMapper;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
 import org.apache.jmeter.protocol.http.control.AuthManager;
 import org.apache.jmeter.protocol.http.control.Authorization;
@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
-public class AuthManagerMapper extends JMeterElementMapperRoot<AuthManager> {
+public class AuthManagerMapper extends AbstractJMeterElementMapper<AuthManager> {
     // +JMX key names - copy from Authorization
     public static final String MECHANISM = "Authorization.mechanism";
 

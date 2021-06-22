@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.XPathExtractor, testGuiClass = JMeterElement.XPathExtractor)
-public class XPathExtractorMapper extends JMeterElementMapperRoot<XPathExtractor> {
+public class XPathExtractorMapper extends AbstractJMeterElementMapper<XPathExtractor> {
     public static final String WEB_TOLERANT = "tolerant";
 
     public static final String WEB_QUIET = "quiet";

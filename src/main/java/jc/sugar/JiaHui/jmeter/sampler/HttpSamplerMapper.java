@@ -21,7 +21,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.*;
 
 @JMeterElementMapperFor(value = JMeterElementType.HttpTestSample, testGuiClass = JMeterElement.HttpTestSample)
-public class HttpSamplerMapper extends JMeterElementMapperRoot<HTTPSamplerProxy> {
+public class HttpSamplerMapper extends AbstractJMeterElementMapper<HTTPSamplerProxy> {
 
     /**
      * +JMX key names

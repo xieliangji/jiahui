@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getInt;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.SizeAssertion, testGuiClass = JMeterElement.SizeAssertion)
-public class SizeAssertionMapper extends JMeterElementMapperRoot<SizeAssertion> {
+public class SizeAssertionMapper extends AbstractJMeterElementMapper<SizeAssertion> {
 
     //+ JMX keys
     public static final String TEST_FIELD = "Assertion.test_field";

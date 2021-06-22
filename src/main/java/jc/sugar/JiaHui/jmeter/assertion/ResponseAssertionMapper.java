@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.*;
 
 @JMeterElementMapperFor(value = JMeterElementType.ResponseAssertion, testGuiClass = JMeterElement.ResponseAssertion)
-public class ResponseAssertionMapper extends JMeterElementMapperRoot<ResponseAssertion> {
+public class ResponseAssertionMapper extends AbstractJMeterElementMapper<ResponseAssertion> {
 
     // +JMX keys
     public static final String TEST_FIELD = "Assertion.test_field";

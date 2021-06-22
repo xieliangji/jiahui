@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.FtpConfig, testGuiClass = JMeterElement.FTPConfig)
-public class FTPConfigMapper extends JMeterElementMapperRoot<ConfigTestElement> {
+public class FTPConfigMapper extends AbstractJMeterElementMapper<ConfigTestElement> {
     private FTPConfigMapper(ConfigTestElement element, Map<String, Object> attributes) {
         super(element, attributes);
     }

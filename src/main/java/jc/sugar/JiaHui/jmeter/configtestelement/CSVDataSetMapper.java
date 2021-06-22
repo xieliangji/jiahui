@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.CSVDataSet, testGuiClass = JMeterElement.CSVDataSet)
-public class CSVDataSetMapper extends JMeterElementMapperRoot<CSVDataSet> {
+public class CSVDataSetMapper extends AbstractJMeterElementMapper<CSVDataSet> {
     public static final String WEB_FILENAME = "filename";
 
     public static final String WEB_FILE_ENCODING = "fileEncoding";

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.TCPConfig, testGuiClass = JMeterElement.TCPConfig)
-public class TCPConfigMapper extends JMeterElementMapperRoot<ConfigTestElement> {
+public class TCPConfigMapper extends AbstractJMeterElementMapper<ConfigTestElement> {
     private TCPConfigMapper(ConfigTestElement element, Map<String, Object> attributes) {
         super(element, attributes);
     }

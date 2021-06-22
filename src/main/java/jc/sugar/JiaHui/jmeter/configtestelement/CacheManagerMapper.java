@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getInt;
 
 @JMeterElementMapperFor(value = JMeterElementType.CacheManager, testGuiClass = JMeterElement.CacheManager)
-public class CacheManagerMapper extends JMeterElementMapperRoot<CacheManager> {
+public class CacheManagerMapper extends AbstractJMeterElementMapper<CacheManager> {
 
     public static final String WEB_CLEAR_EACH_ITERATION = "clearEachIteration";
 

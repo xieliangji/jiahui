@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.GenericController, testGuiClass = JMeterElement.GenericController)
-public class GenericControllerMapper extends JMeterElementMapperRoot<GenericController> {
+public class GenericControllerMapper extends AbstractJMeterElementMapper<GenericController> {
     private GenericControllerMapper(GenericController element, Map<String, Object> attributes) {
         super(element, attributes);
     }

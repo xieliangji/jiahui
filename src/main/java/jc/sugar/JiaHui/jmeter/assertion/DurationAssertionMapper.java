@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getLong;
 
 @JMeterElementMapperFor(value = JMeterElementType.DurationAssertion, testGuiClass = JMeterElement.DurationAssertion)
-public class DurationAssertionMapper extends JMeterElementMapperRoot<DurationAssertion> {
+public class DurationAssertionMapper extends AbstractJMeterElementMapper<DurationAssertion> {
 
     public static final String WEB_DURATION = "duration";
 

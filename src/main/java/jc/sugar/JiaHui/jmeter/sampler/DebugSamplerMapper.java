@@ -2,7 +2,7 @@ package jc.sugar.JiaHui.jmeter.sampler;
 
 import jc.sugar.JiaHui.jmeter.JMeterElement;
 import jc.sugar.JiaHui.jmeter.JMeterElementMapperFor;
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
+import jc.sugar.JiaHui.jmeter.AbstractJMeterElementMapper;
 import jc.sugar.JiaHui.jmeter.JMeterElementType;
 import org.apache.jmeter.sampler.DebugSampler;
 
@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 
 @JMeterElementMapperFor(value = JMeterElementType.DebugSampler, testGuiClass = JMeterElement.DebugSampler)
-public class DebugSamplerMapper extends JMeterElementMapperRoot<DebugSampler> {
+public class DebugSamplerMapper extends AbstractJMeterElementMapper<DebugSampler> {
     public static final String WEB_DISPLAY_JMETER_PROPERTIES = "displayJMeterProperties";
 
     public static final String WEB_DISPLAY_JMETER_VARIABLES = "displayJMeterVariables";

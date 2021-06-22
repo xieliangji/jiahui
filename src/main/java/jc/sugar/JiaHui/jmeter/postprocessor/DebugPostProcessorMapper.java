@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 
 @JMeterElementMapperFor(value = JMeterElementType.DebugPostProcessor, testGuiClass = JMeterElement.DebugPostProcessor)
-public class DebugPostProcessorMapper extends JMeterElementMapperRoot<DebugPostProcessor> {
+public class DebugPostProcessorMapper extends AbstractJMeterElementMapper<DebugPostProcessor> {
 
     public static final String WEB_DISPLAY_JMETER_PROPERTIES = "displayJMeterProperties";
 

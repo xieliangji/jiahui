@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getInt;
 
 @JMeterElementMapperFor(value = JMeterElementType.ResultAction, testGuiClass = JMeterElement.ResultAction)
-public class ResultActionMapper extends JMeterElementMapperRoot<ResultAction> {
+public class ResultActionMapper extends AbstractJMeterElementMapper<ResultAction> {
 
     public static final String WEB_ACTION = "action";
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.AnchorModifier, testGuiClass = JMeterElement.AnchorModifier)
-public class AnchorModifierMapper extends JMeterElementMapperRoot<AnchorModifier> {
+public class AnchorModifierMapper extends AbstractJMeterElementMapper<AnchorModifier> {
 
     private AnchorModifierMapper(AnchorModifier element, Map<String, Object> attributes) {
         super(element, attributes);

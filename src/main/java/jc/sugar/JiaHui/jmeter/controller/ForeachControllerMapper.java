@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.ForeachController, testGuiClass = JMeterElement.ForeachController)
-public class ForeachControllerMapper extends JMeterElementMapperRoot<ForeachController> {
+public class ForeachControllerMapper extends AbstractJMeterElementMapper<ForeachController> {
     public static final String WEB_INPUT_VAL = "inputVal";
 
     public static final String WEB_START_INDEX = "startIndex";

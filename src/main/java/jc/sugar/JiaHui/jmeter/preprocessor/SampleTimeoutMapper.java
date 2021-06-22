@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.SampleTimeout, testGuiClass = JMeterElement.SampleTimeout)
-public class SampleTimeoutMapper extends JMeterElementMapperRoot<SampleTimeout> {
+public class SampleTimeoutMapper extends AbstractJMeterElementMapper<SampleTimeout> {
 
     public static final String WEB_TIMEOUT = "timeout";
 

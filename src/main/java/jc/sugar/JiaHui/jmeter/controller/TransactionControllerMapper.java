@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 
 @JMeterElementMapperFor(value = JMeterElementType.TransactionController, testGuiClass = JMeterElement.TransactionController)
-public class TransactionControllerMapper extends JMeterElementMapperRoot<TransactionController> {
+public class TransactionControllerMapper extends AbstractJMeterElementMapper<TransactionController> {
 
     public static final String WEB_PARENT = "parent";
 

@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.BoundaryExtractor, testGuiClass = JMeterElement.BoundaryExtractor)
-public class BoundaryExtractorMapper extends JMeterElementMapperRoot<BoundaryExtractor> {
+public class BoundaryExtractorMapper extends AbstractJMeterElementMapper<BoundaryExtractor> {
 
     // +JMX useHeaders key
     public static final String MATCH_AGAINST = "BoundaryExtractor.useHeaders";

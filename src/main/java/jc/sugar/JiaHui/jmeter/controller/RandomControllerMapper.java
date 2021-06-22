@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getInt;
 
 @JMeterElementMapperFor(value = JMeterElementType.RandomController, testGuiClass = JMeterElement.RandomController)
-public class RandomControllerMapper extends JMeterElementMapperRoot<RandomController> {
+public class RandomControllerMapper extends AbstractJMeterElementMapper<RandomController> {
     public static final String WEB_STYLE = "style";
 
     private RandomControllerMapper(RandomController element, Map<String, Object> attributes) {

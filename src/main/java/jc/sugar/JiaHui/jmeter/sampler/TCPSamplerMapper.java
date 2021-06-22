@@ -13,7 +13,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.TCPSampler, testGuiClass = JMeterElement.TCPSampler)
-public class TCPSamplerMapper extends JMeterElementMapperRoot<TCPSampler> {
+public class TCPSamplerMapper extends AbstractJMeterElementMapper<TCPSampler> {
     public static final String WEB_CLASSNAME = "className";
 
     public static final String WEB_SERVER = "server";

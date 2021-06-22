@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.JMESPathExtractor, testGuiClass = JMeterElement.JMESPathExtractor)
-public class JMESPathExtractorMapper extends JMeterElementMapperRoot<JMESPathExtractor> {
+public class JMESPathExtractorMapper extends AbstractJMeterElementMapper<JMESPathExtractor> {
 
     public static final String WEB_REFERENCE_NAME = "referenceName";
 

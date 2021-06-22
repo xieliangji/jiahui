@@ -3,7 +3,6 @@ package jc.sugar.JiaHui.jmeter.configtestelement;
 import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.config.Argument;
 import org.apache.jmeter.config.Arguments;
-import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.testelement.property.PropertyIterator;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * Code by 谢良基
  */
 @JMeterElementMapperFor(value = JMeterElementType.Arguments, testGuiClass = JMeterElement.Arguments)
-public class ArgumentsMapper extends JMeterElementMapperRoot<Arguments> {
+public class ArgumentsMapper extends AbstractJMeterElementMapper<Arguments> {
 
     //+ JMX field names - do not change values.
     public static final String ARGUMENTS = "Arguments.arguments"; //$NON-NLS-1$

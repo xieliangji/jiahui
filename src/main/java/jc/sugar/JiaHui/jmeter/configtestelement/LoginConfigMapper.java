@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.KeystoreConfig, testGuiClass = JMeterElement.LoginConfig)
-public class LoginConfigMapper extends JMeterElementMapperRoot<LoginConfig> {
+public class LoginConfigMapper extends AbstractJMeterElementMapper<LoginConfig> {
 
     public static final String WEB_USERNAME = "username";
 

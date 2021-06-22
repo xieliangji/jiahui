@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.BoltSampler, testGuiClass = JMeterElement.BoltSampler)
-public class BoltSamplerMapper extends JMeterElementMapperRoot<BoltSampler> {
+public class BoltSamplerMapper extends AbstractJMeterElementMapper<BoltSampler> {
     public static final String WEB_CYPHER = "cypher";
 
     public static final String WEB_PARAMS = "params";

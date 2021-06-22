@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.JDBCDataSource, testGuiClass = JMeterElement.JDBCDataSource)
-public class JDBCDataSourceMapper extends JMeterElementMapperRoot<DataSourceElement> {
+public class JDBCDataSourceMapper extends AbstractJMeterElementMapper<DataSourceElement> {
 
     public static final String WEB_DATA_SOURCE = "dataSource";
 

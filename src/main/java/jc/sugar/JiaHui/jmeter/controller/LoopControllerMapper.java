@@ -2,8 +2,6 @@ package jc.sugar.JiaHui.jmeter.controller;
 
 import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.control.LoopController;
-import org.apache.jmeter.control.gui.LoopControlPanel;
-import org.apache.jmeter.testelement.TestElement;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +14,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * Code by 谢良基
  */
 @JMeterElementMapperFor(value = JMeterElementType.LoopController, testGuiClass = JMeterElement.LoopController)
-public class LoopControllerMapper extends JMeterElementMapperRoot<LoopController> {
+public class LoopControllerMapper extends AbstractJMeterElementMapper<LoopController> {
 
     //+ JMX field names - do not change values.
     public static final String CONTINUE_FOREVER = "LoopController.continue_forever"; // $NON-NLS-1$

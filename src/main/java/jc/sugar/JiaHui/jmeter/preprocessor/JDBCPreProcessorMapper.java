@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.JDBCPreProcessor, testGuiClass = JMeterElement.JDBCPreProcessor)
-public class JDBCPreProcessorMapper extends JMeterElementMapperRoot<JDBCPreProcessor> {
+public class JDBCPreProcessorMapper extends AbstractJMeterElementMapper<JDBCPreProcessor> {
     private JDBCPreProcessorMapper(JDBCPreProcessor element, Map<String, Object> attributes) {
         super(element, attributes);
     }

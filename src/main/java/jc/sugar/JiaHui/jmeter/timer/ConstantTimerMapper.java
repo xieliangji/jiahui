@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.ConstantTimer, testGuiClass = JMeterElement.ConstantTimer)
-public class ConstantTimerMapper extends JMeterElementMapperRoot<ConstantTimer> {
+public class ConstantTimerMapper extends AbstractJMeterElementMapper<ConstantTimer> {
 
     public static final String WEB_DELAY = "delay";
 

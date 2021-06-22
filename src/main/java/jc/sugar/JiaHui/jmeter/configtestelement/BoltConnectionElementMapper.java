@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.BoltConnectionElement, testGuiClass = JMeterElement.BoltConnectionElement)
-public class BoltConnectionElementMapper extends JMeterElementMapperRoot<BoltConnectionElement> {
+public class BoltConnectionElementMapper extends AbstractJMeterElementMapper<BoltConnectionElement> {
 
     public static final String WEB_BOLT_URI = "boltUri";
 

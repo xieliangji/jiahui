@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.SwitchController, testGuiClass = JMeterElement.SwitchController)
-public class SwitchControllerMapper extends JMeterElementMapperRoot<SwitchController> {
+public class SwitchControllerMapper extends AbstractJMeterElementMapper<SwitchController> {
     public static final String WEB_VALUE = "value";
 
     private SwitchControllerMapper(SwitchController element, Map<String, Object> attributes) {

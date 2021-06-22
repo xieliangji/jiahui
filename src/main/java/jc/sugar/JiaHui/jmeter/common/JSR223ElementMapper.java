@@ -1,6 +1,6 @@
 package jc.sugar.JiaHui.jmeter.common;
 
-import jc.sugar.JiaHui.jmeter.JMeterElementMapperRoot;
+import jc.sugar.JiaHui.jmeter.AbstractJMeterElementMapper;
 import org.apache.jmeter.util.JSR223TestElement;
 
 import java.util.Map;
@@ -11,7 +11,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * 2021/5/25 10:14
  * Code by 谢良基
  */
-public abstract class JSR223ElementMapper<T extends JSR223TestElement> extends JMeterElementMapperRoot<T> {
+public abstract class JSR223ElementMapper<T extends JSR223TestElement> extends AbstractJMeterElementMapper<T> {
 
     //+ JMX(MAP) field names - do not change values.
     private static final String SCRIPT_LANGUAGE = "scriptLanguage";

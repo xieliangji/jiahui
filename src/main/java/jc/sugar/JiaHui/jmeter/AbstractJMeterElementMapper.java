@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
-public abstract class JMeterElementMapperRoot<T extends TestElement> implements JMeterElementMapper<T> {
+public abstract class AbstractJMeterElementMapper<T extends TestElement> implements JMeterElementMapper<T> {
 
     // +JMX scope property name.
     public static final String SCOPE = "Sample.scope";
@@ -41,7 +41,7 @@ public abstract class JMeterElementMapperRoot<T extends TestElement> implements 
 
     protected Map<String, Object> attributes;
 
-    public JMeterElementMapperRoot(T element, Map<String, Object> attributes){
+    public AbstractJMeterElementMapper(T element, Map<String, Object> attributes){
         this.element = element;
         this.attributes = attributes;
         init();

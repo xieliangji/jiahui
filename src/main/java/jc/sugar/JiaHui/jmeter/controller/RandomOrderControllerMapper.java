@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.RandomOrderController, testGuiClass = JMeterElement.RandomOrderController)
-public class RandomOrderControllerMapper extends JMeterElementMapperRoot<RandomOrderController> {
+public class RandomOrderControllerMapper extends AbstractJMeterElementMapper<RandomOrderController> {
     private RandomOrderControllerMapper(RandomOrderController element, Map<String, Object> attributes) {
         super(element, attributes);
     }

@@ -13,7 +13,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.HeaderManager, testGuiClass = JMeterElement.HeaderManager)
-public class HeaderManagerMapper extends JMeterElementMapperRoot<HeaderManager> {
+public class HeaderManagerMapper extends AbstractJMeterElementMapper<HeaderManager> {
 
     public static final String WEB_HEADER = "headers";
 

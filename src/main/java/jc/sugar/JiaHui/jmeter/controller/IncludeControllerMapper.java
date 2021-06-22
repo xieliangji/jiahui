@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.IncludeController, testGuiClass = JMeterElement.IncludeController)
-public class IncludeControllerMapper extends JMeterElementMapperRoot<IncludeController> {
+public class IncludeControllerMapper extends AbstractJMeterElementMapper<IncludeController> {
     public static final String WEB_INCLUDE_PATH = "includePath";
 
     private IncludeControllerMapper(IncludeController element, Map<String, Object> attributes) {

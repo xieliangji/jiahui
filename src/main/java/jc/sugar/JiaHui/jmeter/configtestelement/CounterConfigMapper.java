@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.*;
 
 @JMeterElementMapperFor(value = JMeterElementType.CounterConfig, testGuiClass = JMeterElement.CounterConfig)
-public class CounterConfigMapper extends JMeterElementMapperRoot<CounterConfig> {
+public class CounterConfigMapper extends AbstractJMeterElementMapper<CounterConfig> {
 
     public static final String WEB_INCR = "incr";
 

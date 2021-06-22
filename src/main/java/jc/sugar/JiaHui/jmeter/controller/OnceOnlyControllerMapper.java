@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.OnceOnlyController, testGuiClass = JMeterElement.OnceOnlyController)
-public class OnceOnlyControllerMapper extends JMeterElementMapperRoot<OnceOnlyController> {
+public class OnceOnlyControllerMapper extends AbstractJMeterElementMapper<OnceOnlyController> {
     private OnceOnlyControllerMapper(OnceOnlyController element, Map<String, Object> attributes) {
         super(element, attributes);
     }

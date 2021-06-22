@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.JDBCSampler, testGuiClass = JMeterElement.JDBCSampler)
-public class JDBCSamplerMapper extends JMeterElementMapperRoot<JDBCSampler> {
+public class JDBCSamplerMapper extends AbstractJMeterElementMapper<JDBCSampler> {
     public static final String WEB_DATASOURCE = "dataSource";
 
     public static final String WEB_QUERY_TYPE = "queryType";

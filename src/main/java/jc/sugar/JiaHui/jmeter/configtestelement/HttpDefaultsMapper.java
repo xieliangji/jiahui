@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.HttpDefaults, testGuiClass = JMeterElement.HttpDefaults)
-public class HttpDefaultsMapper extends JMeterElementMapperRoot<ConfigTestElement> {
+public class HttpDefaultsMapper extends AbstractJMeterElementMapper<ConfigTestElement> {
     private HttpDefaultsMapper(ConfigTestElement element, Map<String, Object> attributes) {
         super(element, attributes);
     }

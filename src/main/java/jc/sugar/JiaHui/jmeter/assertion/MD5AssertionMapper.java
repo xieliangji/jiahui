@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.MD5HexAssertion, testGuiClass = JMeterElement.MD5HexAssertion)
-public class MD5AssertionMapper extends JMeterElementMapperRoot<MD5HexAssertion> {
+public class MD5AssertionMapper extends AbstractJMeterElementMapper<MD5HexAssertion> {
     public static final String WEB_SIZE = "size";
 
     private MD5AssertionMapper(MD5HexAssertion element, Map<String, Object> attributes) {

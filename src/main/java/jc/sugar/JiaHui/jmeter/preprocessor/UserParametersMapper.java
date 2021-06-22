@@ -3,7 +3,6 @@ package jc.sugar.JiaHui.jmeter.preprocessor;
 import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.modifiers.UserParameters;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getBoolean;
 
 @JMeterElementMapperFor(value = JMeterElementType.UserParameters, testGuiClass = JMeterElement.UserParameters)
-public class UserParametersMapper extends JMeterElementMapperRoot<UserParameters> {
+public class UserParametersMapper extends AbstractJMeterElementMapper<UserParameters> {
 
     public static final String WEB_PER_ITERATION = "perIteration";
 

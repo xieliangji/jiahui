@@ -3,14 +3,8 @@ package jc.sugar.JiaHui.jmeter.threadgroup;
 import jc.sugar.JiaHui.jmeter.*;
 import jc.sugar.JiaHui.jmeter.controller.LoopControllerMapper;
 import org.apache.jmeter.control.LoopController;
-import org.apache.jmeter.testelement.TestElement;
 import org.apache.jmeter.testelement.property.TestElementProperty;
-import org.apache.jmeter.threads.PostThreadGroup;
-import org.apache.jmeter.threads.SetupThreadGroup;
 import org.apache.jmeter.threads.ThreadGroup;
-import org.apache.jmeter.threads.gui.PostThreadGroupGui;
-import org.apache.jmeter.threads.gui.SetupThreadGroupGui;
-import org.apache.jmeter.threads.gui.ThreadGroupGui;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +17,7 @@ import static org.apache.jorphan.util.Converter.getString;
  * Code by 谢良基
  */
 @JMeterElementMapperFor(value = JMeterElementType.ThreadGroup, testGuiClass = JMeterElement.ThreadGroup)
-public class ThreadGroupMapper extends JMeterElementMapperRoot<ThreadGroup> {
+public class ThreadGroupMapper extends AbstractJMeterElementMapper<ThreadGroup> {
     //+ MAP key names - do not change the string values
     public static final String WEB_RAMP_TIME = "rampTime";
 

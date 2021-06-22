@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.XMLAssertion, testGuiClass = JMeterElement.XMLAssertion)
-public class XMLAssertionMapper extends JMeterElementMapperRoot<XMLAssertion> {
+public class XMLAssertionMapper extends AbstractJMeterElementMapper<XMLAssertion> {
 
     private XMLAssertionMapper(XMLAssertion element, Map<String, Object> attributes) {
         super(element, attributes);

@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.PreciseThroughputTimer, testGuiClass = JMeterElement.PreciseThroughputTimer)
-public class PreciseThroughputTimerMapper extends JMeterElementMapperRoot<PreciseThroughputTimer> {
+public class PreciseThroughputTimerMapper extends AbstractJMeterElementMapper<PreciseThroughputTimer> {
 
     public static final String WEB_ALLOWED_THROUGHPUT_SURPLUS = "allowedThroughputSurplus";
 

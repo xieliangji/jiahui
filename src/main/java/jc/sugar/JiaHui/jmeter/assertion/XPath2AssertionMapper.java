@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.XPath2Assertion, testGuiClass = JMeterElement.XPath2Assertion)
-public class XPath2AssertionMapper extends JMeterElementMapperRoot<XPath2Assertion> {
+public class XPath2AssertionMapper extends AbstractJMeterElementMapper<XPath2Assertion> {
 
     public static final String WEB_NEGATE = "negate";
 

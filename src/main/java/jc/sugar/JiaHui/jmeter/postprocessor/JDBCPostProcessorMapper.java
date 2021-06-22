@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.JDBCPostProcessor, testGuiClass = JMeterElement.JDBCPostProcessor)
-public class JDBCPostProcessorMapper extends JMeterElementMapperRoot<JDBCPostProcessor> {
+public class JDBCPostProcessorMapper extends AbstractJMeterElementMapper<JDBCPostProcessor> {
     private JDBCPostProcessorMapper(JDBCPostProcessor element, Map<String, Object> attributes) {
         super(element, attributes);
     }

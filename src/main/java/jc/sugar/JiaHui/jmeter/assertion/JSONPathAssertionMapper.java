@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.JSONPathAssertion, testGuiClass = JMeterElement.JSONPathAssertion)
-public class JSONPathAssertionMapper extends JMeterElementMapperRoot<JSONPathAssertion> {
+public class JSONPathAssertionMapper extends AbstractJMeterElementMapper<JSONPathAssertion> {
 
     public static final String WEB_JSON_PATH = "jsonPath";
 

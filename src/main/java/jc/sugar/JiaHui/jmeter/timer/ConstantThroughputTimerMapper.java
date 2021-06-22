@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.ConstantThroughputTimer, testGuiClass = JMeterElement.ConstantThroughputTimer)
-public class ConstantThroughputTimerMapper extends JMeterElementMapperRoot<ConstantThroughputTimer> {
+public class ConstantThroughputTimerMapper extends AbstractJMeterElementMapper<ConstantThroughputTimer> {
 
     public static final String WEB_CALC_MODE = "calcMode";
 

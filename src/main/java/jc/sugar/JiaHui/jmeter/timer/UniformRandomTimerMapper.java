@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.UniformRandomTimer, testGuiClass = JMeterElement.UniformRandomTimer)
-public class UniformRandomTimerMapper extends JMeterElementMapperRoot<UniformRandomTimer> {
+public class UniformRandomTimerMapper extends AbstractJMeterElementMapper<UniformRandomTimer> {
 
     public static final String WEB_DELAY = "delay";
 

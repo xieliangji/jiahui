@@ -11,7 +11,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.FTPSampler, testGuiClass = JMeterElement.FTPSampler)
-public class FTPSamplerMapper extends JMeterElementMapperRoot<FTPSampler> {
+public class FTPSamplerMapper extends AbstractJMeterElementMapper<FTPSampler> {
     public static final String WEB_SERVER = "server";
 
     public static final String WEB_PORT = "port";

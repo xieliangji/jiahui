@@ -9,7 +9,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.WhileController, testGuiClass = JMeterElement.WhileController)
-public class WhileControllerMapper extends JMeterElementMapperRoot<WhileController> {
+public class WhileControllerMapper extends AbstractJMeterElementMapper<WhileController> {
     public static final String WEB_CONDITION = "condition";
 
     private WhileControllerMapper(WhileController element, Map<String, Object> attributes) {

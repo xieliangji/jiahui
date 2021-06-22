@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.apache.jorphan.util.Converter.*;
 
 @JMeterElementMapperFor(value = JMeterElementType.ThroughputController, testGuiClass = JMeterElement.ThroughputController)
-public class ThroughputControllerMapper extends JMeterElementMapperRoot<ThroughputController> {
+public class ThroughputControllerMapper extends AbstractJMeterElementMapper<ThroughputController> {
     public static final String WEB_STYLE = "style";
 
     public static final String WEB_MAX_THROUGHPUT = "maxThroughput";

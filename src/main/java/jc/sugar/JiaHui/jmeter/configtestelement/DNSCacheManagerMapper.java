@@ -14,7 +14,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.DNSCacheManager, testGuiClass = JMeterElement.DNSCacheManager)
-public class DNSCacheManagerMapper extends JMeterElementMapperRoot<DNSCacheManager> {
+public class DNSCacheManagerMapper extends AbstractJMeterElementMapper<DNSCacheManager> {
 
     public static final String WEB_CLEAR_EACH_ITERATION = "clearEachIteration";
 

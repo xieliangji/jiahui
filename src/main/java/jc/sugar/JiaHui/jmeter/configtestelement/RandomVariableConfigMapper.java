@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.RandomVariableConfig, testGuiClass = JMeterElement.RandomVariableConfig)
-public class RandomVariableConfigMapper extends JMeterElementMapperRoot<RandomVariableConfig> {
+public class RandomVariableConfigMapper extends AbstractJMeterElementMapper<RandomVariableConfig> {
 
     public static final String WEB_VARIABLE_NAME = "variableName";
 

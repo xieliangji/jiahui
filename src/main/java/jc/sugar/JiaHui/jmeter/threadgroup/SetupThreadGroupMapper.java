@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.SetupThreadGroup, testGuiClass = JMeterElement.SetupThreadGroup)
-public class SetupThreadGroupMapper extends JMeterElementMapperRoot<SetupThreadGroup> {
+public class SetupThreadGroupMapper extends AbstractJMeterElementMapper<SetupThreadGroup> {
     private SetupThreadGroupMapper(SetupThreadGroup element, Map<String, Object> attributes) {
         super(element, attributes);
     }

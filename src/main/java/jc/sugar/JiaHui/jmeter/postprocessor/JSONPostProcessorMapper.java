@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.JSONPostProcessor, testGuiClass = JMeterElement.JSONPostProcessor)
-public class JSONPostProcessorMapper extends JMeterElementMapperRoot<JSONPostProcessor> {
+public class JSONPostProcessorMapper extends AbstractJMeterElementMapper<JSONPostProcessor> {
 
     public static final String WEB_REFERENCE_NAMES = "referenceNames";
 

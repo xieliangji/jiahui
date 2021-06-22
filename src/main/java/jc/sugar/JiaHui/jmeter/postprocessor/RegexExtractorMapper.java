@@ -10,7 +10,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 @JMeterElementMapperFor(value = JMeterElementType.RegexExtractor, testGuiClass = JMeterElement.RegexExtractor)
-public class RegexExtractorMapper extends JMeterElementMapperRoot<RegexExtractor> {
+public class RegexExtractorMapper extends AbstractJMeterElementMapper<RegexExtractor> {
 
     // +JMX useHeaders key
     private static final String MATCH_AGAINST = "RegexExtractor.useHeaders";

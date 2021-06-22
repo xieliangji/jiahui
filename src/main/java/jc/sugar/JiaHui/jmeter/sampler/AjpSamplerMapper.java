@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @JMeterElementMapperFor(value = JMeterElementType.AjpSampler, testGuiClass = JMeterElement.AjpSampler)
-public class AjpSamplerMapper extends JMeterElementMapperRoot<AjpSampler> {
+public class AjpSamplerMapper extends AbstractJMeterElementMapper<AjpSampler> {
     private AjpSamplerMapper(AjpSampler element, Map<String, Object> attributes) {
         super(element, attributes);
     }
