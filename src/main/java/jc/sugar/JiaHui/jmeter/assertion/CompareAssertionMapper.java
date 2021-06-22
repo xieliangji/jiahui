@@ -13,6 +13,7 @@ import java.util.Map;
 
 import static org.apache.jorphan.util.Converter.*;
 
+
 @JMeterElementMapperFor(value = JMeterElementType.CompareAssertion, testGuiClass = JMeterElement.CompareAssertion)
 public class CompareAssertionMapper extends AbstractJMeterElementMapper<CompareAssertion> {
 

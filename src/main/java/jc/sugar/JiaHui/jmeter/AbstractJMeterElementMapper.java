@@ -50,6 +50,7 @@ public abstract class AbstractJMeterElementMapper<T extends TestElement> impleme
     private void init(){
         // 属性map为空，表明是从element to map
         if(attributes.size() == 0){
+            System.out.println("element to map");
             attributes.put(WEB_ID, System.identityHashCode(element));
             attributes.put(WEB_GUICLASS, element.getPropertyAsString(TestElement.GUI_CLASS));
             attributes.put(WEB_TESTCLASS, element.getPropertyAsString(TestElement.TEST_CLASS));
@@ -62,11 +63,14 @@ public abstract class AbstractJMeterElementMapper<T extends TestElement> impleme
             }
         } else{
             // map 不为空，则是从map to element
+            System.out.println("map to element");
+            System.out.println(attributes);
             element.setProperty(TestElement.GUI_CLASS, getString(attributes.get(WEB_GUICLASS)));
-            element.setProperty(TestElement.TEST_CLASS, getString(attributes.get(WEB_TESTNAME)));
+            element.setProperty(TestElement.TEST_CLASS, getString(attributes.get(WEB_TESTCLASS)));
             element.setProperty(TestElement.NAME, getString(attributes.get(WEB_TESTNAME)));
             element.setProperty(TestElement.COMMENTS, getString(attributes.get(WEB_COMMENTS)));
             element.setProperty(TestElement.ENABLED, getBoolean(attributes.get(WEB_ENABLED)));
+            System.out.println(element.getClass());
             if(element instanceof AbstractScopedTestElement){
                 element.setProperty(SCOPE, getString(attributes.get(WEB_SCOPE)));
                 if(getString(attributes.get(WEB_SCOPE)).equals("variable")){

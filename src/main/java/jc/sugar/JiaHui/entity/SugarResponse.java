@@ -31,7 +31,7 @@ public class SugarResponse<T> {
     }
 
 
-    public static SugarResponse<Void> fail(String message){
+    public static <T> SugarResponse<T> fail(String message){
         return new SugarResponse<>(SugarResponseCode.SYSTEM_ERROR, null, message);
     }
 

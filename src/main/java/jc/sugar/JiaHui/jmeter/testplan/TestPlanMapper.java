@@ -30,15 +30,15 @@ public class TestPlanMapper extends AbstractJMeterElementMapper<TestPlan> {
 
 
     //+ Map key names - do not change values (web)
-    private static final String VUE_FUNCTIONAL_MODE = "functionalMode";
+    private static final String WEB_FUNCTIONAL_MODE = "functionalMode";
 
-    private static final String VUE_USER_DEFINED_VARIABLES = "arguments";
+    private static final String WEB_USER_DEFINED_VARIABLES = "arguments";
 
-    private static final String VUE_SERIALIZE_THREADGROUPS = "serializeThreadgroups";
+    private static final String WEB_SERIALIZE_THREADGROUPS = "serializeThreadgroups";
 
-    private static final String VUE_CLASSPATHS = "userDefineClasspath";
+    private static final String WEB_CLASSPATHS = "userDefineClasspath";
 
-    private static final String VUE_TEARDOWN_ON_SHUTDOWN = "teardownOnShutdown";
+    private static final String WEB_TEARDOWN_ON_SHUTDOWN = "teardownOnShutdown";
 
     private TestPlanMapper(TestPlan element, Map<String, Object> attributes) {
         super(element, attributes);
@@ -55,10 +55,10 @@ public class TestPlanMapper extends AbstractJMeterElementMapper<TestPlan> {
 
     @Override
     public TestPlan fromAttributes() {
-        element.setFunctionalMode(getBoolean(attributes.get(VUE_FUNCTIONAL_MODE)));
-        element.setSerialized(getBoolean(attributes.get(VUE_SERIALIZE_THREADGROUPS)));
-        element.setTearDownOnShutdown(getBoolean(VUE_TEARDOWN_ON_SHUTDOWN));
-        element.setTestPlanClasspath(getString(VUE_CLASSPATHS));
+        element.setFunctionalMode(getBoolean(attributes.get(WEB_FUNCTIONAL_MODE)));
+        element.setSerialized(getBoolean(attributes.get(WEB_SERIALIZE_THREADGROUPS)));
+        element.setTearDownOnShutdown(getBoolean(attributes.get(WEB_TEARDOWN_ON_SHUTDOWN)));
+        element.setTestPlanClasspath(getString(attributes.get(WEB_CLASSPATHS)));
 
         ArgumentsMapper argumentsMapper = new ArgumentsMapper(attributes);
         Arguments arguments = argumentsMapper.fromAttributes();
@@ -72,14 +72,14 @@ public class TestPlanMapper extends AbstractJMeterElementMapper<TestPlan> {
         attributes.put(WEB_CATEGORY, JMeterElementCategory.TestPlan);
         attributes.put(WEB_TYPE, JMeterElementType.TestPlan);
 
-        attributes.put(VUE_SERIALIZE_THREADGROUPS, element.isSerialized());
-        attributes.put(VUE_CLASSPATHS, element.getTestPlanClasspath());
-        attributes.put(VUE_FUNCTIONAL_MODE, element.isFunctionalMode());
-        attributes.put(VUE_TEARDOWN_ON_SHUTDOWN, element.isTearDownOnShutdown());
+        attributes.put(WEB_SERIALIZE_THREADGROUPS, element.isSerialized());
+        attributes.put(WEB_CLASSPATHS, element.getTestPlanClasspath());
+        attributes.put(WEB_FUNCTIONAL_MODE, element.isFunctionalMode());
+        attributes.put(WEB_TEARDOWN_ON_SHUTDOWN, element.isTearDownOnShutdown());
 
         Arguments arguments = element.getArguments();
         Map<String, Object> argumentAttributes = new ArgumentsMapper(arguments).toAttributes();
-        attributes.put(VUE_USER_DEFINED_VARIABLES, argumentAttributes.get(ArgumentsMapper.WEB_ARGUMENTS));
+        attributes.put(WEB_USER_DEFINED_VARIABLES, argumentAttributes.get(ArgumentsMapper.WEB_ARGUMENTS));
 
         return attributes;
     }

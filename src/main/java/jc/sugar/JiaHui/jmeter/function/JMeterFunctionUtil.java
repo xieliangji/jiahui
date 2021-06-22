@@ -38,38 +38,6 @@ public abstract class JMeterFunctionUtil {
     }
 
 
-//    public static List<SugarJFunction> getSugarJFunctions(){
-//        JMeterUtils.setLocale(Locale.SIMPLIFIED_CHINESE);
-//        List<SugarJFunction> sugarJFunctions = new ArrayList<>();
-//
-//        Set<Class<? extends Function>> jFunctions = findJMeterFunctions();
-//        for(Class<? extends Function> jFunction: jFunctions){
-//            try{
-//                Function function = jFunction.asSubclass(Function.class).getDeclaredConstructor().newInstance();
-//                String referenceKey = function.getReferenceKey();
-//                if(referenceKey.length() > 0){
-//                    SugarJFunction sugarJFunction = new SugarJFunction(System.identityHashCode(function), referenceKey, function.getArgumentDesc());
-//                    sugarJFunctions.add(sugarJFunction);
-//                    if(sugarJFunction.getName().equals("__machineIP")){
-//                        sugarJFunction.setArgumentDescriptions(new ArrayList<>());
-//                        SugarJFunctionResult result = execute(sugarJFunction);
-//                        logger.info(new ObjectMapper().writeValueAsString(result));
-//                    }
-//                }
-//            } catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException | JsonProcessingException e) {
-//                logger.warn(e.getMessage());
-//            }
-//        }
-//
-//        if(sugarJFunctions.size() == 0){
-//            SugarJFunction sugarJFunction = new SugarJFunction(0, "_$Fuck", Lists.newArrayList("没有找到任何JMeter函数"));
-//            sugarJFunctions.add(sugarJFunction);
-//        }
-//        logger.info("JMeter 函数个数： " + sugarJFunctions.size());
-//        return sugarJFunctions;
-//    }
-
-
     public static List<SugarJFunction> getSugarJFunctions(){
         JMeterInitializer.initialize();
 
@@ -92,6 +60,7 @@ public abstract class JMeterFunctionUtil {
 
 
     public static SugarJFunctionResult execute(SugarJFunction sugarJFunction){
+        JMeterInitializer.initialize();
         String functionCall = buildFunctionCallString(sugarJFunction.getName(), sugarJFunction.getArgumentDescriptions());
         CompoundVariable function = new CompoundVariable(functionCall);
 
