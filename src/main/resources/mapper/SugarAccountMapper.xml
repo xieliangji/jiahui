@@ -13,8 +13,9 @@
     </resultMap>
 
     <sql id="allColumns">
-        id, username, email, salt, create_time, update_time
+        id, username, email, password, salt, create_time, update_time
     </sql>
+
 
     <!--
         id - 标识符，可以被用来引用语句。对应dao接口中的一个方法
@@ -28,10 +29,19 @@
         keyColumn - 设置生成键值在表中的列名
         databaseId - 如果设置了数据库厂商标识，mybatis会加载所有不带databaseId或匹配当前databaseId的语句
     -->
-    <insert id="saveSugarAccount" parameterType="jc.sugar.JiaHui.entity.SugarAccount" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
-
-
-
+    <insert id="saveAccount" parameterType="jc.sugar.JiaHui.entity.SugarAccount" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO sugar_account (username, email, salt, password)
+        VALUES (#{username}, #{email}, #{salt}, #{password})
     </insert>
 
+    <!--  查询邮箱关联的账户  -->
+    <select id="findAccountByEmail" parameterType="jc.sugar.JiaHui.entity.SugarAccount" resultMap="SugarAccount">
+        select <include refid="allColumns"></include> from sugar_account where email = #{email}
+    </select>
+
+
+    <!-- 查询所有用户 -->
+    <select id="findAllAccount" resultMap="SugarAccount">
+        SELECT <include refid="allColumns"></include> FROM sugar_account
+    </select>
 </mapper>

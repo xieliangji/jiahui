@@ -1,38 +1,30 @@
-package jc.sugar.JiaHui.entity;
+package jc.sugar.JiaHui.dto;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * 2021/5/25 11:13
- * Code by 谢良基
+ * @Code 谢良基 2021/6/23
  */
-public class SugarProject {
+public class SugarProjectDto {
 
     private Integer id;
 
-
     private String name;
-
 
     private String remark;
 
-
     private Integer creatorId;
-
 
     private Date createTime;
 
-
     private Date updateTime;
 
+    private List<SugarAccountDto> members;
 
-    private List<SugarAccount> members;
+    private List<Integer> memberIds;
 
-
-    public SugarProject(){
-
-    }
+    public SugarProjectDto(){}
 
     public Integer getId() {
         return id;
@@ -82,11 +74,19 @@ public class SugarProject {
         this.updateTime = updateTime;
     }
 
-    public List<SugarAccount> getMembers() {
+    public List<SugarAccountDto> getMembers() {
         return members;
     }
 
-    public void setMembers(List<SugarAccount> members) {
+    public void setMembers(List<SugarAccountDto> members) {
         this.members = members;
+    }
+
+    public List<Integer> getMemberIds() {
+        return memberIds;
+    }
+
+    public void setMemberIds(List<Integer> memberIds) {
+        this.memberIds = memberIds;
     }
 }

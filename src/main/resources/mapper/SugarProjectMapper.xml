@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarProjectDao">
+    <resultMap id="Project" type="jc.sugar.JiaHui.entity.SugarProject">
+        <result column="id" property="id" javaType="java.lang.Integer"/>
+        <result column="name" property="name" javaType="java.lang.String"/>
+        <result column="remark" property="remark" javaType="java.lang.String"/>
+        <result column="creator_id" property="creatorId" javaType="java.lang.Integer"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <collection property="members" ofType="jc.sugar.JiaHui.entity.SugarAccount">
+            <id property="id" column="account_id"/>
+            <result property="username" column="account_name"/>
+            <result property="email" column="email"/>
+        </collection>
+    </resultMap>
+
+
+    <sql id="allColumns">id, name, remark, creator_id, create_time, update_time</sql>
+
+    <select id="findProjectByMember" resultMap="Project" parameterType="java.lang.Integer">
+        SELECT
+            p.id id,
+            p.name name,
+            p.remark remark,
+            p.creator_id creator_id,
+            p.create_time create_time,
+            p.update_time update_time,
+            a.id account_id,
+            a.username account_name,
+            a.email email
+        FROM
+            sugar_project p, sugar_account_project ap, sugar_account a
+        WHERE ap.account_id = #{accountId} AND p.id = ap.project_id AND a.id = ap.account_id
+    </select>
+
+
+    <insert id="saveProject" parameterType="jc.sugar.JiaHui.entity.SugarProject" keyProperty="id" keyColumn="id"  useGeneratedKeys="true">
+        INSERT INTO sugar_project (name, remark, creator_id)
+        VALUES (#{name}, #{remark}, #{creatorId})
+    </insert>
+
+
+    <update id="updateProjectName" parameterType="jc.sugar.JiaHui.entity.SugarProject">
+        UPDATE sugar_project
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+
+    <delete id="deleteProjectById" parameterType="jc.sugar.JiaHui.entity.SugarProject">
+        DELETE FROM sugar_project WHERE id = #{id}
+    </delete>
+
+
+
+</mapper>

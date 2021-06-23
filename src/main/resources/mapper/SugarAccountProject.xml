@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarProjectMemberDao">
+    <resultMap id="SugarProjectMember" type="jc.sugar.JiaHui.entity.SugarProjectMember">
+        <result property="id" column="id" javaType="java.lang.Integer"/>
+        <result property="accountId" column="account_id" javaType="java.lang.Integer"/>
+        <result property="projectId" column="project_id" javaType="java.lang.Integer"/>
+        <result property="createTime" column="create_time" javaType="java.util.Date"/>
+        <result property="updateTime" column="update_time" javaType="java.util.Date"/>
+    </resultMap>
+
+    <sql id="allColumns">id, account_id, project_id, create_time, update_time</sql>
+
+    <insert id="saveProjectMember" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO sugar_account_project (account_id, project_id) VALUES
+        <foreach collection="list" item="item" separator=",">
+            (#{item.accountId}, #{item.projectId})
+        </foreach>
+    </insert>
+</mapper>
