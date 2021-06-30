@@ -11,4 +11,6 @@ import java.util.List;
 public interface SugarProjectMemberDao {
 
     Integer saveProjectMember(List<SugarProjectMember> list) throws Exception;
+
+    Integer deleteProjectMember(List<SugarProjectMember> list) throws Exception;
 }

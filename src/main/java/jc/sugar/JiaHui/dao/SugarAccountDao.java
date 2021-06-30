@@ -14,5 +14,9 @@ public interface SugarAccountDao {
 
     Integer saveAccount(SugarAccount account) throws Exception;
 
-    List<SugarAccount> findAllAccount() throws Exception;
+    List<SugarAccount> fetchAllAccounts() throws Exception;
+
+    Integer updateAccount(SugarAccount account) throws Exception;
+
+    SugarAccount fetchAccountById(SugarAccount account) throws Exception;
 }

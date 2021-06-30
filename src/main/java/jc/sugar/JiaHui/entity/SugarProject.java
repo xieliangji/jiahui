@@ -21,6 +21,9 @@ public class SugarProject {
     private Integer creatorId;
 
 
+    private Integer updaterId;
+
+
     private Date createTime;
 
 
@@ -88,5 +91,13 @@ public class SugarProject {
 
     public void setMembers(List<SugarAccount> members) {
         this.members = members;
+    }
+
+    public Integer getUpdaterId() {
+        return updaterId;
+    }
+
+    public void setUpdaterId(Integer updaterId) {
+        this.updaterId = updaterId;
     }
 }

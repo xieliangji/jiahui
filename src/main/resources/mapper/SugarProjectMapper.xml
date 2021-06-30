@@ -18,7 +18,63 @@
 
     <sql id="allColumns">id, name, remark, creator_id, create_time, update_time</sql>
 
-    <select id="findProjectByMember" resultMap="Project" parameterType="java.lang.Integer">
+
+    <insert id="saveProject" parameterType="jc.sugar.JiaHui.entity.SugarProject" keyProperty="id" keyColumn="id"  useGeneratedKeys="true">
+        INSERT INTO sugar_project (name, remark, creator_id)
+        VALUES (#{name}, #{remark}, #{creatorId})
+    </insert>
+
+
+    <update id="updateProject" parameterType="jc.sugar.JiaHui.entity.SugarProject">
+        UPDATE sugar_project
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+
+    <delete id="deleteProjectById" parameterType="java.lang.Integer">
+        DELETE FROM sugar_project WHERE id = #{id}
+    </delete>
+
+
+    <select id="queryProject" parameterType="jc.sugar.JiaHui.entity.query.ProjectQuery" resultMap="Project">
+        SELECT
+        pr.*,
+        sa.id account_id,
+        sa.username account_name,
+        sa.email email
+        FROM (
+        SELECT
+        p.id id,
+        p.name name,
+        p.remark remark,
+        p.creator_id creator_id,
+        p.create_time create_time,
+        p.update_time update_time
+        FROM sugar_project p, sugar_account_project ap, sugar_account a
+        <where>
+            ap.account_id = #{accountId}
+            <if test="creatorName != null and creatorName != ''">
+                AND a.username = #{creatorName}
+            </if>
+            <if test="name != null and name != ''">
+                AND p.name LIKE concat('%', #{name}, '%')
+            </if>
+            AND p.id = ap.project_id
+            </where>
+        ) pr, sugar_account sa, sugar_account_project sap
+        WHERE pr.id = sap.project_id AND sa.id = sap.account_id
+    </select>
+
+
+    <select id="fetchProjectById" parameterType="java.lang.Integer" resultMap="Project">
         SELECT
             p.id id,
             p.name name,
@@ -31,27 +87,6 @@
             a.email email
         FROM
             sugar_project p, sugar_account_project ap, sugar_account a
-        WHERE ap.account_id = #{accountId} AND p.id = ap.project_id AND a.id = ap.account_id
+        WHERE p.id = #{id} AND p.id = ap.project_id AND a.id = ap.account_id
     </select>
-
-
-    <insert id="saveProject" parameterType="jc.sugar.JiaHui.entity.SugarProject" keyProperty="id" keyColumn="id"  useGeneratedKeys="true">
-        INSERT INTO sugar_project (name, remark, creator_id)
-        VALUES (#{name}, #{remark}, #{creatorId})
-    </insert>
-
-
-    <update id="updateProjectName" parameterType="jc.sugar.JiaHui.entity.SugarProject">
-        UPDATE sugar_project
-        SET name = #{name}
-        WHERE id = #{id}
-    </update>
-
-
-    <delete id="deleteProjectById" parameterType="jc.sugar.JiaHui.entity.SugarProject">
-        DELETE FROM sugar_project WHERE id = #{id}
-    </delete>
-
-
-
 </mapper>

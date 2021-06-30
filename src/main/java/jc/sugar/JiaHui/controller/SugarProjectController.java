@@ -1,7 +1,10 @@
 package jc.sugar.JiaHui.controller;
 
-import jc.sugar.JiaHui.dto.SugarProjectDto;
+import jc.sugar.JiaHui.dto.project.SugarProjectDTO;
 import jc.sugar.JiaHui.entity.SugarResponse;
+import jc.sugar.JiaHui.entity.vo.ProjectQueryVO;
+import jc.sugar.JiaHui.entity.vo.ProjectSaveVO;
+import jc.sugar.JiaHui.entity.vo.ProjectUpdateVO;
 import jc.sugar.JiaHui.exception.SugarProjectException;
 import jc.sugar.JiaHui.service.SugarProjectService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,11 +28,11 @@ public class SugarProjectController {
     }
 
 
-    @RequestMapping("/all")
+    @RequestMapping("/query")
     @ResponseBody
-    public SugarResponse<List<SugarProjectDto>> getAllProjects(Integer accountId){
+    public SugarResponse<List<SugarProjectDTO>> fetchProjects(@RequestBody ProjectQueryVO queryVO){
         try {
-            List<SugarProjectDto> payload = projectService.getProjectsOfAccount(accountId);
+            List<SugarProjectDTO> payload = projectService.queryProjects(queryVO);
             return SugarResponse.success(payload, "");
         } catch (SugarProjectException e) {
             e.printStackTrace();
@@ -40,9 +43,35 @@ public class SugarProjectController {
 
     @RequestMapping("/save")
     @ResponseBody
-    public SugarResponse<SugarProjectDto> saveProject(@RequestBody SugarProjectDto newProject){
+    public SugarResponse<SugarProjectDTO> saveProject(@RequestBody ProjectSaveVO saveVO){
         try {
-            SugarProjectDto payload = projectService.saveProject(newProject);
+            SugarProjectDTO payload = projectService.saveProject(saveVO);
+            return SugarResponse.success(payload, "");
+        } catch (SugarProjectException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public SugarResponse<Integer> deleteProject(Integer id) {
+        try {
+            Integer payload = projectService.deleteProject(id);
+            return SugarResponse.success(payload, "");
+        } catch (SugarProjectException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public SugarResponse<Integer> updateProject(@RequestBody ProjectUpdateVO updateVO){
+        try {
+            Integer payload = projectService.updateProject(updateVO);
             return SugarResponse.success(payload, "");
         } catch (SugarProjectException e) {
             e.printStackTrace();

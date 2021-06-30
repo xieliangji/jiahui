@@ -1,6 +1,9 @@
 package jc.sugar.JiaHui.service;
 
-import jc.sugar.JiaHui.dto.SugarAccountDto;
+import jc.sugar.JiaHui.dto.project.SugarAccountDTO;
+import jc.sugar.JiaHui.entity.vo.AccountSignInVO;
+import jc.sugar.JiaHui.entity.vo.AccountSignUpVO;
+import jc.sugar.JiaHui.entity.vo.AccountUpdateVO;
 import jc.sugar.JiaHui.exception.SugarAccountException;
 
 import java.util.List;
@@ -10,10 +13,11 @@ import java.util.List;
  */
 public interface SugarAccountService {
 
+    SugarAccountDTO signIn(AccountSignInVO signInAccount) throws SugarAccountException;
 
-    SugarAccountDto signIn(SugarAccountDto signInAccount) throws SugarAccountException;
+    SugarAccountDTO signUp(AccountSignUpVO signUpAccount) throws SugarAccountException;
 
-    SugarAccountDto signUp(SugarAccountDto signUpAccount) throws SugarAccountException;
+    List<SugarAccountDTO> fetchAllAccounts() throws SugarAccountException;
 
-    List<SugarAccountDto> getAccountList() throws SugarAccountException;
+    SugarAccountDTO update(AccountUpdateVO updateAccount) throws SugarAccountException;
 }

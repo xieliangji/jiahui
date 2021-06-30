@@ -2,6 +2,8 @@ package jc.sugar.JiaHui.jmeter;
 
 import org.apache.jmeter.testelement.AbstractScopedTestElement;
 import org.apache.jmeter.testelement.TestElement;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Map;
 
@@ -9,6 +11,7 @@ import static org.apache.jorphan.util.Converter.getBoolean;
 import static org.apache.jorphan.util.Converter.getString;
 
 public abstract class AbstractJMeterElementMapper<T extends TestElement> implements JMeterElementMapper<T> {
+    private final Logger logger = LogManager.getLogger(AbstractJMeterElementMapper.class);
 
     // +JMX scope property name.
     public static final String SCOPE = "Sample.scope";
@@ -50,7 +53,7 @@ public abstract class AbstractJMeterElementMapper<T extends TestElement> impleme
     private void init(){
         // 属性map为空，表明是从element to map
         if(attributes.size() == 0){
-            System.out.println("element to map");
+            logger.info("element to map - [" + element.getClass() + "]");
             attributes.put(WEB_ID, System.identityHashCode(element));
             attributes.put(WEB_GUICLASS, element.getPropertyAsString(TestElement.GUI_CLASS));
             attributes.put(WEB_TESTCLASS, element.getPropertyAsString(TestElement.TEST_CLASS));
@@ -63,14 +66,12 @@ public abstract class AbstractJMeterElementMapper<T extends TestElement> impleme
             }
         } else{
             // map 不为空，则是从map to element
-            System.out.println("map to element");
-            System.out.println(attributes);
+            logger.info("map to element - [" + element.getClass() + "]");
             element.setProperty(TestElement.GUI_CLASS, getString(attributes.get(WEB_GUICLASS)));
             element.setProperty(TestElement.TEST_CLASS, getString(attributes.get(WEB_TESTCLASS)));
             element.setProperty(TestElement.NAME, getString(attributes.get(WEB_TESTNAME)));
             element.setProperty(TestElement.COMMENTS, getString(attributes.get(WEB_COMMENTS)));
             element.setProperty(TestElement.ENABLED, getBoolean(attributes.get(WEB_ENABLED)));
-            System.out.println(element.getClass());
             if(element instanceof AbstractScopedTestElement){
                 element.setProperty(SCOPE, getString(attributes.get(WEB_SCOPE)));
                 if(getString(attributes.get(WEB_SCOPE)).equals("variable")){

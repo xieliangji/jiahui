@@ -17,4 +17,11 @@
             (#{item.accountId}, #{item.projectId})
         </foreach>
     </insert>
+
+    <delete id="deleteProjectMember" parameterType="java.util.List">
+        DELETE FROM sugar_account_project WHERE
+        <foreach collection="list" item="item" separator=" or" index="index">
+            (account_id = #{item.accountId} AND project_id = #{item.projectId})
+        </foreach>
+    </delete>
 </mapper>

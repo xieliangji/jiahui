@@ -1,12 +1,15 @@
 package jc.sugar.JiaHui.jmeter;
 
 
+import org.apache.jmeter.engine.StandardJMeterEngine;
 import org.apache.jmeter.util.JMeterUtils;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -18,6 +21,8 @@ public class JMeterInitializer {
 
 
     private static String SEARCH_PATHS = "search_paths"; // jmeter查找类的路径
+
+    public static final Map<String, StandardJMeterEngine> EXECUTORS = new HashMap<>();
 
 
     public static void initialize(){

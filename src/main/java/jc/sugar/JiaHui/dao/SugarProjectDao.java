@@ -1,6 +1,7 @@
 package jc.sugar.JiaHui.dao;
 
 import jc.sugar.JiaHui.entity.SugarProject;
+import jc.sugar.JiaHui.entity.query.ProjectQuery;
 
 import java.util.List;
 
@@ -10,10 +11,17 @@ import java.util.List;
  */
 public interface SugarProjectDao {
 
-    List<SugarProject> findProjectByMember(Integer accountId) throws Exception;
-
-
     Integer saveProject(SugarProject project) throws Exception;
 
 
+    List<SugarProject> queryProject(ProjectQuery query) throws Exception;
+
+
+    Integer updateProject(SugarProject project) throws Exception;
+
+
+    Integer deleteProjectById(Integer id) throws Exception;
+
+
+    SugarProject fetchProjectById(Integer id) throws Exception;
 }

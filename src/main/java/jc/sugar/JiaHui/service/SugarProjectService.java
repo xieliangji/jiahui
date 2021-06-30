@@ -1,6 +1,9 @@
 package jc.sugar.JiaHui.service;
 
-import jc.sugar.JiaHui.dto.SugarProjectDto;
+import jc.sugar.JiaHui.dto.project.SugarProjectDTO;
+import jc.sugar.JiaHui.entity.vo.ProjectQueryVO;
+import jc.sugar.JiaHui.entity.vo.ProjectSaveVO;
+import jc.sugar.JiaHui.entity.vo.ProjectUpdateVO;
 import jc.sugar.JiaHui.exception.SugarProjectException;
 
 import java.util.List;
@@ -10,7 +13,11 @@ import java.util.List;
  */
 public interface SugarProjectService {
 
-    List<SugarProjectDto> getProjectsOfAccount(Integer accountId) throws SugarProjectException;
+    SugarProjectDTO saveProject(ProjectSaveVO saveProject) throws SugarProjectException;
 
-    SugarProjectDto saveProject(SugarProjectDto newProject) throws SugarProjectException;
+    List<SugarProjectDTO> queryProjects(ProjectQueryVO queryVO) throws SugarProjectException;
+
+    Integer updateProject(ProjectUpdateVO updateProject) throws SugarProjectException;
+
+    Integer deleteProject(Integer id) throws SugarProjectException;
 }

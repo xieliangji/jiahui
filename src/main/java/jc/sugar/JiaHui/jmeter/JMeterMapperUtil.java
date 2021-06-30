@@ -1,13 +1,10 @@
 package jc.sugar.JiaHui.jmeter;
 
 import jc.sugar.JiaHui.jmeter.exceptions.JMeterTestElementMapperException;
-import org.apache.jmeter.control.gui.TestPlanGui;
 import org.apache.jmeter.testelement.TestElement;
-import org.apache.jmeter.testelement.TestPlan;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -16,6 +13,7 @@ import static org.apache.jorphan.util.Converter.getString;
 
 public class JMeterMapperUtil {
     private static final Map<JMeterElementMapperFor, Class<? extends JMeterElementMapper>> JMeterElementMappers = new HashMap<>();
+
 
     static {
         Reflections reflections= new Reflections("jc.sugar.JiaHui.jmeter");
@@ -84,19 +82,4 @@ public class JMeterMapperUtil {
             throw new JMeterTestElementMapperException(e);
         }
     }
-
-
-    public static void main(String[] args) throws JMeterTestElementMapperException {
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put("type", JMeterElementType.TestPlan);
-        attributes.put("guiclass", TestPlanGui.class.getSimpleName());
-        attributes.put("testclass", TestPlan.class.getSimpleName());
-        attributes.put("arguments", new ArrayList<>());
-        TestPlan testPlan = (TestPlan) buildJMeterElement(attributes);
-        System.out.println(testPlan.getProperty(TestElement.GUI_CLASS) + " >>>>" + testPlan.getProperty(TestElement.TEST_CLASS));
-        System.out.println(testPlan.getTestPlanClasspath());
-        Map<String, Object> attributes2 = buildJMeterElementAttributes(testPlan);
-        System.out.println(attributes2);
-    }
-
 }

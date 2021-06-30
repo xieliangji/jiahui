@@ -41,7 +41,19 @@
 
 
     <!-- 查询所有用户 -->
-    <select id="findAllAccount" resultMap="SugarAccount">
+    <select id="fetchAllAccounts" resultMap="SugarAccount">
         SELECT <include refid="allColumns"></include> FROM sugar_account
+    </select>
+
+
+    <!-- 更新用户信息 -->
+    <update id="updateAccount" parameterType="jc.sugar.JiaHui.entity.SugarAccount">
+        UPDATE sugar_account SET username = #{username} WHERE id = #{id}
+    </update>
+
+
+    <!-- 根据用户ID查询用户 -->
+    <select id="fetchAccountById" parameterType="jc.sugar.JiaHui.entity.SugarAccount" resultMap="SugarAccount">
+        select <include refid="allColumns"></include> FROM sugar_account WHERE id = #{id}
     </select>
 </mapper>

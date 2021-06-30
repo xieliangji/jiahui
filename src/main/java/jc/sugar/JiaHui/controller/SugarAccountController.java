@@ -1,10 +1,12 @@
 package jc.sugar.JiaHui.controller;
 
-import jc.sugar.JiaHui.dto.SugarAccountDto;
+import jc.sugar.JiaHui.dto.project.SugarAccountDTO;
 import jc.sugar.JiaHui.entity.SugarResponse;
+import jc.sugar.JiaHui.entity.vo.AccountSignInVO;
+import jc.sugar.JiaHui.entity.vo.AccountSignUpVO;
+import jc.sugar.JiaHui.entity.vo.AccountUpdateVO;
 import jc.sugar.JiaHui.exception.SugarAccountException;
 import jc.sugar.JiaHui.service.SugarAccountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,9 +30,9 @@ public class SugarAccountController {
 
     @RequestMapping("/signIn")
     @ResponseBody
-    public SugarResponse<SugarAccountDto> signIn(@RequestBody SugarAccountDto signInAccount){
+    public SugarResponse<SugarAccountDTO> signIn(@RequestBody AccountSignInVO signInAccount){
         try {
-            SugarAccountDto payload = accountService.signIn(signInAccount);
+            SugarAccountDTO payload = accountService.signIn(signInAccount);
             return SugarResponse.success(payload, "");
         } catch (SugarAccountException e) {
             e.printStackTrace();
@@ -41,9 +43,9 @@ public class SugarAccountController {
 
     @RequestMapping("/signUp")
     @ResponseBody
-    public SugarResponse<SugarAccountDto> signUp(@RequestBody SugarAccountDto signUpAccount){
+    public SugarResponse<SugarAccountDTO> signUp(@RequestBody AccountSignUpVO signUpAccount){
         try {
-            SugarAccountDto payload = accountService.signUp(signUpAccount);
+            SugarAccountDTO payload = accountService.signUp(signUpAccount);
             return SugarResponse.success(payload, "");
         } catch (SugarAccountException e) {
             e.printStackTrace();
@@ -52,11 +54,25 @@ public class SugarAccountController {
     }
 
 
+
     @RequestMapping("/all")
     @ResponseBody
-    public SugarResponse<List<SugarAccountDto>> getAllAccounts(){
+    public SugarResponse<List<SugarAccountDTO>> fetchAllAccounts(){
         try {
-            List<SugarAccountDto> payload = accountService.getAccountList();
+            List<SugarAccountDTO> payload = accountService.fetchAllAccounts();
+            return SugarResponse.success(payload, "");
+        } catch (SugarAccountException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public SugarResponse<SugarAccountDTO> updateAccount(AccountUpdateVO updateAccount){
+        try {
+            SugarAccountDTO payload = accountService.update(updateAccount);
             return SugarResponse.success(payload, "");
         } catch (SugarAccountException e) {
             e.printStackTrace();
