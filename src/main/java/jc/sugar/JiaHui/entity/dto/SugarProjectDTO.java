@@ -1,32 +1,54 @@
-package jc.sugar.JiaHui.dto;
+package jc.sugar.JiaHui.entity.dto;
 
 import java.util.Date;
 import java.util.List;
 
 /**
- * @Code 谢良基 2021/6/23
+ * @Code 谢良基 2021/6/28
  */
-public class SugarProjectDto {
+public class SugarProjectDTO {
 
+    /**
+     * 项目ID
+     */
     private Integer id;
 
+    /**
+     * 项目名
+     */
     private String name;
 
+    /**
+     * 项目备注
+     */
     private String remark;
 
+    /**
+     * 项目创建人ID
+     */
     private Integer creatorId;
 
+    /**
+     * 项目创建人名
+     */
     private String creatorName;
 
+    /**
+     * 项目创建时间
+     */
     private Date createTime;
 
+    /**
+     * 项目更新时间
+     */
     private Date updateTime;
 
-    private List<SugarAccountDto> members;
+    /**
+     * 项目成员列表
+     */
+    private List<SugarAccountDTO> members;
 
-    private List<Integer> memberIds;
-
-    public SugarProjectDto(){}
+    public SugarProjectDTO(){}
 
     public Integer getId() {
         return id;
@@ -60,14 +82,6 @@ public class SugarProjectDto {
         this.creatorId = creatorId;
     }
 
-    public String getCreatorName() {
-        return creatorName;
-    }
-
-    public void setCreatorName(String creatorName) {
-        this.creatorName = creatorName;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -84,19 +98,19 @@ public class SugarProjectDto {
         this.updateTime = updateTime;
     }
 
-    public List<SugarAccountDto> getMembers() {
+    public List<SugarAccountDTO> getMembers() {
         return members;
     }
 
-    public void setMembers(List<SugarAccountDto> members) {
+    public void setMembers(List<SugarAccountDTO> members) {
         this.members = members;
     }
 
-    public List<Integer> getMemberIds() {
-        return memberIds;
+    public String getCreatorName() {
+        return creatorName;
     }
 
-    public void setMemberIds(List<Integer> memberIds) {
-        this.memberIds = memberIds;
+    public void setCreatorName(String creatorName) {
+        this.creatorName = creatorName;
     }
 }

@@ -1,9 +1,9 @@
-package jc.sugar.JiaHui.dto.project;
+package jc.sugar.JiaHui.entity.dto;
 
 import java.util.Date;
 
 /**
- * @Code 谢良基 2021/6/28
+ * @Code 谢良基 2021/6/23
  */
 public class SugarAccountDTO {
 
@@ -32,7 +32,9 @@ public class SugarAccountDTO {
      */
     private Date updateTime;
 
+
     public SugarAccountDTO(){}
+
 
     public Integer getId() {
         return id;

@@ -8,29 +8,76 @@ import java.util.Date;
  */
 public class SugarJMX {
 
+    /**
+     * 测试计划ID
+     */
     private Integer id;
 
 
+    /**
+     * 测试计划名称
+     */
     private String name;
 
 
+    /**
+     * 测试计划所属项目ID
+     */
     private Integer projectId;
 
 
-    private String jmxContent;
+    /**
+     * 测试计划jmx文件名
+     */
+    private String jmxPath;
 
 
+    /**
+     * 测试计划备注
+     */
+    private String remark;
+
+
+    /**
+     * 测试计划创建人用户ID
+     */
     private Integer creatorId;
 
 
+    /**
+     * 测试计划最近更新人用户ID
+     */
     private Integer updaterId;
 
 
+    /**
+     * 测试计划创建时间
+     */
     private Date createTime;
 
 
+    /**
+     * 测试计划最近一次更新时间
+     */
     private Date updateTime;
 
+
+    /**
+     * 所属项目实体
+     */
+    private SugarProject project;
+
+
+    /**
+     * 创建人账户实体
+     */
+    private SugarAccount creator;
+
+
+    /**
+     * 更新人账户实体
+     */
+    private SugarAccount updater;
 
     public SugarJMX(){}
 
@@ -59,12 +106,20 @@ public class SugarJMX {
         this.projectId = projectId;
     }
 
-    public String getJmxContent() {
-        return jmxContent;
+    public String getJmxPath() {
+        return jmxPath;
     }
 
-    public void setJmxContent(String jmxContent) {
-        this.jmxContent = jmxContent;
+    public void setJmxPath(String jmxPath) {
+        this.jmxPath = jmxPath;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Integer getCreatorId() {
@@ -97,5 +152,29 @@ public class SugarJMX {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public SugarProject getProject() {
+        return project;
+    }
+
+    public void setProject(SugarProject project) {
+        this.project = project;
+    }
+
+    public SugarAccount getCreator() {
+        return creator;
+    }
+
+    public void setCreator(SugarAccount creator) {
+        this.creator = creator;
+    }
+
+    public SugarAccount getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(SugarAccount updater) {
+        this.updater = updater;
     }
 }

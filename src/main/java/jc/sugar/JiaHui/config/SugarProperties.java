@@ -11,23 +11,36 @@ import org.springframework.stereotype.Component;
  */
 @ConfigurationProperties(prefix = "sugar")
 @EnableConfigurationProperties(SugarProperties.class)
-@PropertySource("classpath:sugar.properties")
 @Component
 public class SugarProperties {
 
     /**
      * 上传文件保存的目录路径
      */
-    private String uploadFilePath;
+    private String uploadRoot;
 
 
+    /**
+     * JMeter 测试计划jmx文件存储目录路径
+     */
+    private String jmxRoot;
 
-    public void setUploadFilePath(String uploadFilePath){
-        this.uploadFilePath = uploadFilePath;
+
+    public SugarProperties(){}
+
+    public String getUploadRoot() {
+        return uploadRoot;
     }
 
+    public void setUploadRoot(String uploadRoot) {
+        this.uploadRoot = uploadRoot;
+    }
 
-    public String getUploadFilePath(){
-        return uploadFilePath;
+    public String getJmxRoot() {
+        return jmxRoot;
+    }
+
+    public void setJmxRoot(String jmxRoot) {
+        this.jmxRoot = jmxRoot;
     }
 }

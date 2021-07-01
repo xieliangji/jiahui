@@ -53,4 +53,13 @@ public class JMeterInitializer {
         JMeterUtils.setLocale(Locale.SIMPLIFIED_CHINESE);
         JMeterUtils.setProperty(SEARCH_PATHS, JMETER_JAR_SEARCH_PATH);
     }
+
+
+    public static String getResourceRoot(){
+        if(System.getProperty("publish") == null){
+            return new File(Objects.requireNonNull(Thread.currentThread().getContextClassLoader().getResource(".")).getPath()).getAbsolutePath();
+        } else {
+            return System.getProperty("user.dir");
+        }
+    }
 }

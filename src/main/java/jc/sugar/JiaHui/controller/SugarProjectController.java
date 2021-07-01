@@ -1,7 +1,7 @@
 package jc.sugar.JiaHui.controller;
 
-import jc.sugar.JiaHui.dto.project.SugarProjectDTO;
 import jc.sugar.JiaHui.entity.SugarResponse;
+import jc.sugar.JiaHui.entity.dto.SugarProjectDTO;
 import jc.sugar.JiaHui.entity.vo.ProjectQueryVO;
 import jc.sugar.JiaHui.entity.vo.ProjectSaveVO;
 import jc.sugar.JiaHui.entity.vo.ProjectUpdateVO;
