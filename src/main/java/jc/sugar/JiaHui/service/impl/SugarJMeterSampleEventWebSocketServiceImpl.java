@@ -1,10 +1,9 @@
 package jc.sugar.JiaHui.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jc.sugar.JiaHui.entity.SugarJMeterSampleEvent;
+import jc.sugar.JiaHui.entity.SugarJMeterSamplerResult;
 import jc.sugar.JiaHui.exception.SugarJMeterException;
 import jc.sugar.JiaHui.service.SugarJMeterSampleEventWebSocketService;
-import org.apache.jmeter.samplers.SampleEvent;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -48,13 +47,13 @@ public class SugarJMeterSampleEventWebSocketServiceImpl implements SugarJMeterSa
     }
 
     @Override
-    public void sendSampleEvent(String executorId, SugarJMeterSampleEvent sampleEvent) throws SugarJMeterException {
+    public void sendSampleEvent(String executorId, SugarJMeterSamplerResult samplerResult) throws SugarJMeterException {
         Session session = webSocketSessionPool.get(executorId);
         if(session == null){
             throw new SugarJMeterException("WebSocket会话不存在");
         }
         try {
-            session.getBasicRemote().sendText(new ObjectMapper().writeValueAsString(sampleEvent));
+            session.getBasicRemote().sendText(new ObjectMapper().writeValueAsString(samplerResult));
         } catch (IOException e) {
             e.printStackTrace();
             throw new SugarJMeterException(e);

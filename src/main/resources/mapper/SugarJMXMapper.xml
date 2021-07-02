@@ -36,10 +36,37 @@
     </insert>
 
 
+    <!-- 测试计划更新 -->
+    <update id="updateJmx" parameterType="jc.sugar.JiaHui.entity.SugarJMX">
+        UPDATE sugar_jmx SET name = #{name}, remark = #{remark}, updater_id = #{updaterId} WHERE id = #{id}
+    </update>
+
+
+    <!-- 按id查询测试计划 -->
+    <select id="fetchJmxById" parameterType="java.lang.Integer" resultMap="SugarJMX">
+        SELECT jpc.*, su.username updater_name
+        FROM (
+            SELECT
+                jmx.id id,
+                jmx.name name,
+                jmx.project_id project_id,
+                jmx.jmx_path jmx_path,
+                jmx.remark remark,
+                jmx.creator_id creator_id,
+                jmx.updater_id updater_id,
+                jmx.create_time create_time,
+                jmx.update_time update_time,
+                pr.name project_name,
+                sa.username creator_name
+            FROM sugar_jmx jmx, sugar_account sa, sugar_project pr WHERE jmx.project_id = pr.id AND jmx.creator_id = sa.id AND jmx.id = #{id}
+        ) jpc
+        LEFT JOIN sugar_account su ON jpc.updater_id = su.id
+    </select>
+
     <!-- 测试计划查询 -->
-    <select id="queryJmx" parameterType="jc.sugar.JiaHui.entity.query.ProjectQuery" resultMap="SugarJMX">
+    <select id="queryJmx" parameterType="jc.sugar.JiaHui.entity.query.JMXQuery" resultMap="SugarJMX">
         SELECT
-            jpc.*, su.name updater_name
+            jpc.*, su.username updater_name
         FROM (
              SELECT
                     jmx.id id,
@@ -59,11 +86,11 @@
                 <if test="name != null and name != ''">
                     AND jmx.name LIKE CONCAT('%', #{name}, '%')
                 </if>
-                <if test="projectName != null and name != ''">
+                <if test="projectName != null and projectName != ''">
                     AND pr.name LIKE CONCAT('%', #{projectName}, '%')
                 </if>
-                <if test="creatorName != null and name != ''">
-                    AND sa.name = #{creatorName}
+                <if test="creatorName != null and creatorName != ''">
+                    AND sa.username = #{creatorName}
                 </if>
             </where>
         ) jpc
@@ -76,12 +103,9 @@
     </select>
 
 
-
-
-
-
-
-
-
+    <!-- 删除测试计划 -->
+    <delete id="deleteJmxById" parameterType="java.lang.Integer">
+        DELETE FROM sugar_jmx WHERE id = #{id}
+    </delete>
 
 </mapper>

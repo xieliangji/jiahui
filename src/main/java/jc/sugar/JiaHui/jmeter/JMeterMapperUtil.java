@@ -66,7 +66,7 @@ public class JMeterMapperUtil {
         Class<? extends JMeterElementMapper> mapperClass = null;
         for(JMeterElementMapperFor key: JMeterElementMappers.keySet()){
             JMeterElement jMeterElement = key.testGuiClass();
-            if(testClass.equals(jMeterElement.getTestClass()) && guiClass.equals(jMeterElement.getGuiClass())){
+            if(testClass.equals(jMeterElement.getTestClass()) && guiClass.contains(jMeterElement.getGuiClass())){
                 mapperClass = JMeterElementMappers.get(key);
             }
         }
@@ -76,6 +76,7 @@ public class JMeterMapperUtil {
         }
 
         try {
+
             return mapperClass.getConstructor(element.getClass()).newInstance(element).toAttributes();
         } catch (InvocationTargetException | InstantiationException | NoSuchMethodException | IllegalAccessException e) {
             e.printStackTrace();

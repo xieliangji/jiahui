@@ -15,7 +15,7 @@ public class JMXUpdateVO {
 
     private String remark;
 
-    private String updaterId;
+    private Integer updaterId;
 
     public JMXUpdateVO(){}
 
@@ -51,11 +51,11 @@ public class JMXUpdateVO {
         this.remark = remark;
     }
 
-    public String getUpdaterId() {
+    public Integer getUpdaterId() {
         return updaterId;
     }
 
-    public void setUpdaterId(String updaterId) {
+    public void setUpdaterId(Integer updaterId) {
         this.updaterId = updaterId;
     }
 }

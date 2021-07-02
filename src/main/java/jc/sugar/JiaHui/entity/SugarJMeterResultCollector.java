@@ -41,7 +41,7 @@ public class SugarJMeterResultCollector extends ResultCollector {
 
         if(webSocketService != null){
             try {
-                webSocketService.sendSampleEvent(executorId, new SugarJMeterSampleEvent(event));
+                webSocketService.sendSampleEvent(executorId, new SugarJMeterSamplerResult(event.getResult()));
             } catch (SugarJMeterException e) {
                 e.printStackTrace();
             }

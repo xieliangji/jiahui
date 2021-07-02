@@ -1,10 +1,11 @@
 package jc.sugar.JiaHui.controller;
 
-import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import jc.sugar.JiaHui.entity.SugarResponse;
 import jc.sugar.JiaHui.entity.dto.SugarJMXDTO;
 import jc.sugar.JiaHui.entity.vo.JMXQueryVO;
 import jc.sugar.JiaHui.entity.vo.JMXSaveVO;
+import jc.sugar.JiaHui.entity.vo.JMXUpdateVO;
 import jc.sugar.JiaHui.exception.SugarJMXException;
 import jc.sugar.JiaHui.service.SugarJMXService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,15 +42,38 @@ public class SugarJMXController {
 
     @RequestMapping("/query")
     @ResponseBody
-    public SugarResponse<Page<SugarJMXDTO>> queryJMX(@RequestBody JMXQueryVO queryVO){
-
+    public SugarResponse<PageInfo<SugarJMXDTO>> queryJMX(@RequestBody JMXQueryVO queryVO){
         try {
-            Page<SugarJMXDTO> payload = jmxService.queryJMX(queryVO);
+            PageInfo<SugarJMXDTO> payload = jmxService.queryJMX(queryVO);
             return SugarResponse.success(payload, "");
         } catch (SugarJMXException e) {
             e.printStackTrace();
             return new SugarResponse<>(10086, null, "");
         }
+    }
 
+    @RequestMapping("/update")
+    @ResponseBody
+    public SugarResponse<String> updateJMX(@RequestBody JMXUpdateVO updateVO){
+        try {
+            jmxService.updateJMX(updateVO);
+            return SugarResponse.success("Update Success", "");
+        } catch (SugarJMXException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public SugarResponse<String> deleteJMX(Integer id){
+        try {
+            jmxService.deleteJMX(id);
+            return SugarResponse.success("Delete Success", "");
+        } catch (SugarJMXException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
     }
 }

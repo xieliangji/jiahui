@@ -42,6 +42,7 @@ public class JMeterHashTreeUtil {
             for(Object element: elements){
                 Map<String, Object> attributes = JMeterMapperUtil.buildJMeterElementAttributes((TestElement) element);
                 attributes.put(WEB_CHILDREN, fromHashTree(hashTree.getTree(element)));
+                result.add(attributes);
             }
         }
         return result;

@@ -108,8 +108,8 @@ public class HttpSamplerMapper extends AbstractJMeterElementMapper<HTTPSamplerPr
         this(new HTTPSamplerProxy(), attributes);
     }
 
-    public HttpSamplerMapper(TestElement element){
-        super((HTTPSamplerProxy) element, new HashMap<>());
+    public HttpSamplerMapper(HTTPSamplerProxy element){
+        super(element, new HashMap<>());
     }
 
     @Override
@@ -237,17 +237,19 @@ public class HttpSamplerMapper extends AbstractJMeterElementMapper<HTTPSamplerPr
 
         List<Map<String, Object>> fileAttributesList = new ArrayList<>();
         HTTPFileArgs httpFileArgs = (HTTPFileArgs) element.getProperty(FILE_ARGS).getObjectValue();
-        PropertyIterator fileIter = httpFileArgs.iterator();
-        while(fileIter.hasNext()){
-            HTTPFileArg httpFileArg = (HTTPFileArg) fileIter.next().getObjectValue();
-            Map<String, Object> fileAttributes = new HashMap<>();
-            fileAttributes.put(WEB_ID, System.identityHashCode(httpFileArg));
-            fileAttributes.put(ArgumentsMapper.WEB_FILE_PATH, httpFileArg.getPropertyAsString(FILEPATH));
-            fileAttributes.put(ArgumentsMapper.WEB_FILE_PARAMNAME, httpFileArg.getPropertyAsString(PARAMNAME));
-            fileAttributes.put(ArgumentsMapper.WEB_FILE_MIMETYPE, httpFileArg.getPropertyAsString(MIMETYPE));
-            fileAttributesList.add(fileAttributes);
+        if(httpFileArgs != null){
+            PropertyIterator fileIter = httpFileArgs.iterator();
+            while(fileIter.hasNext()){
+                HTTPFileArg httpFileArg = (HTTPFileArg) fileIter.next().getObjectValue();
+                Map<String, Object> fileAttributes = new HashMap<>();
+                fileAttributes.put(WEB_ID, System.identityHashCode(httpFileArg));
+                fileAttributes.put(ArgumentsMapper.WEB_FILE_PATH, httpFileArg.getPropertyAsString(FILEPATH));
+                fileAttributes.put(ArgumentsMapper.WEB_FILE_PARAMNAME, httpFileArg.getPropertyAsString(PARAMNAME));
+                fileAttributes.put(ArgumentsMapper.WEB_FILE_MIMETYPE, httpFileArg.getPropertyAsString(MIMETYPE));
+                fileAttributesList.add(fileAttributes);
+            }
+            attributes.put(WEB_FILES, fileAttributesList);
         }
-        attributes.put(WEB_FILES, fileAttributesList);
 
         attributes.put(WEB_IMPLEMENTATION, element.getPropertyAsString(HTTPSamplerBase.IMPLEMENTATION));
         attributes.put(WEB_CONNECT_TIMEOUT, element.getPropertyAsString(HTTPSamplerBase.CONNECT_TIMEOUT));

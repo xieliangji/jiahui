@@ -55,8 +55,10 @@ public abstract class AbstractJMeterElementMapper<T extends TestElement> impleme
         if(attributes.size() == 0){
             logger.info("element to map - [" + element.getClass() + "]");
             attributes.put(WEB_ID, System.identityHashCode(element));
-            attributes.put(WEB_GUICLASS, element.getPropertyAsString(TestElement.GUI_CLASS));
-            attributes.put(WEB_TESTCLASS, element.getPropertyAsString(TestElement.TEST_CLASS));
+            String guiClass = element.getPropertyAsString(TestElement.GUI_CLASS);
+            String testClass = element.getPropertyAsString(TestElement.TEST_CLASS);
+            attributes.put(WEB_GUICLASS, guiClass.substring(guiClass.lastIndexOf('.') + 1));
+            attributes.put(WEB_TESTCLASS, testClass.substring(testClass.lastIndexOf('.') + 1));
             attributes.put(WEB_TESTNAME, element.getName());
             attributes.put(WEB_COMMENTS, element.getComment());
             attributes.put(WEB_ENABLED, element.isEnabled());

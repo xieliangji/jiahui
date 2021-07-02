@@ -16,4 +16,11 @@ public interface SugarJMXDao {
     Page<SugarJMX> queryJmx(JMXQuery jmxQuery) throws Exception;
 
 
+    Integer updateJmx(SugarJMX sugarJMX) throws Exception;
+
+
+    SugarJMX fetchJmxById(Integer id) throws Exception;
+
+
+    Integer deleteJmxById(Integer id) throws Exception;
 }

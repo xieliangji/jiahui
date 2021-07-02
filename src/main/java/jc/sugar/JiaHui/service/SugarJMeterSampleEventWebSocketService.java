@@ -1,6 +1,7 @@
 package jc.sugar.JiaHui.service;
 
 import jc.sugar.JiaHui.entity.SugarJMeterSampleEvent;
+import jc.sugar.JiaHui.entity.SugarJMeterSamplerResult;
 import jc.sugar.JiaHui.exception.SugarJMeterException;
 
 /**
@@ -8,5 +9,5 @@ import jc.sugar.JiaHui.exception.SugarJMeterException;
  */
 public interface SugarJMeterSampleEventWebSocketService {
 
-    void sendSampleEvent(String executorId, SugarJMeterSampleEvent sampleEvent) throws SugarJMeterException;
+    void sendSampleEvent(String executorId, SugarJMeterSamplerResult samplerResult) throws SugarJMeterException;
 }
