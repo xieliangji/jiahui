@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarReportDao">
+
+    <resultMap id="SugarReport" type="jc.sugar.JiaHui.entity.SugarReport">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="testPlanId" column="test_plan_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="status" column="status"/>
+        <result property="sampleResults" column="sample_results"/>
+        <result property="description" column="description"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+        <association property="testPlan" column="test_plan_id">
+            <result property="id" column="test_plan_id"/>
+            <result property="name" column="test_plan_name"/>
+            <association property="project" column="project_id">
+                <result property="id" column="project_id"/>
+                <result property="name" column="project_name"/>
+            </association>
+        </association>
+        <association property="creator" column="creator_id">
+            <result property="id" column="creator_id"/>
+            <result property="username" column="username"/>
+        </association>
+    </resultMap>
+
+
+    <sql id="all_cols">id, name, test_plan_id, start_time, end_time, status, creator_id, sample_results, description, create_time</sql>
+
+
+    <!-- 保存测试报告 -->
+    <insert id="saveReport" parameterType="jc.sugar.JiaHui.entity.SugarReport" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO sugar_report (name, test_plan_id, start_time, end_time, status, sample_results, description, creator_id)
+        VALUES (#{name}, #{testPlanId}, #{startTime}, #{endTime}, #{status}, #{sampleResults}, #{description}, #{creatorId})
+    </insert>
+
+
+    <!-- 查询测试报告 -->
+    <select id="fetchReports" parameterType="jc.sugar.JiaHui.entity.query.ReportQuery" resultMap="SugarReport">
+        SELECT
+            r.id id,
+            r.name name,
+            r.test_plan_id test_plan_id,
+            r.start_time start_time,
+            r.end_time end_time,
+            r.status status,
+            r.creator_id creator_id,
+            r.sample_results sample_results,
+            r.description description,
+            r.create_time create_time,
+            stp.test_plan_name test_plan_name,
+            stp.project_name project_name,
+            sa.username username
+        FROM sugar_report r
+        JOIN (
+            SELECT tap.test_plan_id test_plan_id, tap.test_plan_name test_plan_name, tap.project_id project_id, sp.name project_name
+            FROM (
+                SELECT tp.id test_plan_id, name test_plan_name, ap.project_id
+                FROM sugar_test_plan tp
+                JOIN (
+                    SELECT project_id project_id
+                    FROM sugar_account_project
+                    WHERE account_id = #{accountId}
+                ) ap
+                ON tp.project_id = ap.project_id
+            ) tap
+            JOIN sugar_project sp
+            ON tap.project_id = sp.id
+            <where>
+                <if test="projectName != null and projectName != ''">
+                    sp.name LIKE CANCAT('%', #{projectName}, '%')
+                </if>
+            </where>
+        ) stp
+        ON r.test_plan_id = stp.test_plan_id
+        <where>
+            <if test="testPlanName != null and testPlanName != ''">
+                stp.test_plan_name LIKE CONCAT('%', #{testPlanName}, '%')
+            </if>
+        </where>
+        JOIN sugar_account sa
+        ON r.creator_id = sa.id
+        <where>
+            <if test="name != null and name != ''">
+                r.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                AND sa.username = #{creatorName}
+            </if>
+            <if test="createStartTime != null and createStartTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[>=]]> #{createStartTime}
+            </if>
+            <if test="createEndTime != null and createEndTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[<=]]> #{createEndTime}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteReportById" parameterType="java.lang.Integer">
+        DELETE FROM sugar_report WHERE id = #{id}
+    </delete>
+</mapper>

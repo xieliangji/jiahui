@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarFileDao">
+
+    <resultMap id="SugarFile" type="jc.sugar.JiaHui.entity.SugarFile">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="fileName" column="file_name"/>
+        <result property="remark" column="remark"/>
+        <result property="fileType" column="file_type"/>
+        <result property="uploaderId" column="uploader_id"/>
+        <result property="updaterId" column="updater_id"/>
+        <result property="uploadTime" column="upload_time"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="uploader" column="upload_id">
+            <result property="id" column="uploader_id"/>
+            <result property="username" column="uploader_name"/>
+        </association>
+        <association property="updater" column="updater_id">
+            <result property="id" column="updater_id"/>
+            <result property="username" column="updater_name"/>
+        </association>
+    </resultMap>
+
+
+    <sql id="all_cols">id, name, file_name, file_type, remark, uploader_id, updater_id, upload_time, updater_time</sql>
+
+
+    <insert id="saveFile" parameterType="jc.sugar.JiaHui.entity.SugarFile" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO sugar_file (name, file_name, file_type, remark, uploader_id)
+        VALUES (#{name}, #{fileName}, #{fileType}, #{remark}, #{uploaderId})
+    </insert>
+
+
+    <select id="fetchFileById" parameterType="java.lang.Integer" resultMap="SugarFile">
+        SELECT id, name, file_name, remark, file_type, uploader_id, updater_id, upload_time, update_time FROM sugar_file WHERE id = #{id}
+    </select>
+
+
+    <select id="fetchFiles" parameterType="jc.sugar.JiaHui.entity.query.FileQuery" resultMap="SugarFile">
+        SELECT f.id id, f.name name, f.file_name file_name, f.remark remark, f.file_type file_type, f.uploader_id, f.updater_id, f.upload_time, f.update_time, ula.username uploader_name, uda.username updater_name
+        FROM sugar_file f
+        JOIN sugar_account ula ON f.uploader_id = ula.id
+        LEFT JOIN sugar_account uda ON f.updater_id = uda.id
+        <where>
+            <if test="name != null and name != ''">
+                f.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="fileType != null and fileType != 0">
+                AND f.file_type = #{fileType}
+            </if>
+            <if test="uploaderName != null and uploaderName != ''">
+                AND ula.username = #{uploaderName}
+            </if>
+            <if test="uploadStartTime != null and uploadStartTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[>=]]> #{uploadStartTime}
+            </if>
+            <if test="uploadEndTime != null and uploadEndTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[<=]]> #{uploadEndTime}
+            </if>
+        </where>
+    </select>
+
+
+    <delete id="deleteFileById" parameterType="java.lang.Integer">
+        DELETE FROM sugar_file WHERE id = #{id}
+    </delete>
+
+
+    <update id="updateFileById" parameterType="jc.sugar.JiaHui.entity.SugarFile">
+        UPDATE sugar_file
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+            updater_id = #{updaterId}
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>

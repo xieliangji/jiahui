@@ -1,50 +1,35 @@
-package jc.sugar.JiaHui.entity;
+package jc.sugar.JiaHui.entity.dto;
 
 import java.util.Date;
 
 /**
- * 2021/5/25 11:20
- * Code by 谢良基
+ * @Code 谢良基 2021/7/9
+ *
  */
-public class SugarFile {
-
+public class SugarFileDTO {
 
     private Integer id;
 
-
     private String name;
-
 
     private String fileName;
 
-
     private Integer fileType;
-
 
     private String remark;
 
-
     private Integer uploaderId;
 
-
-    private SugarAccount uploader;
-
-
-    private Integer updaterId;
-
-
-    private SugarAccount updater;
-
+    private String uploaderName;
 
     private Date uploadTime;
 
+    private String updaterName;
 
     private Date updateTime;
 
+    private Integer updaterId;
 
-    public SugarFile(){
-
-    }
 
     public Integer getId() {
         return id;
@@ -86,12 +71,12 @@ public class SugarFile {
         this.uploaderId = uploaderId;
     }
 
-    public SugarAccount getUploader() {
-        return uploader;
+    public String getUploaderName() {
+        return uploaderName;
     }
 
-    public void setUploader(SugarAccount uploader) {
-        this.uploader = uploader;
+    public void setUploaderName(String uploaderName) {
+        this.uploaderName = uploaderName;
     }
 
     public Date getUploadTime() {
@@ -102,20 +87,20 @@ public class SugarFile {
         this.uploadTime = uploadTime;
     }
 
-    public Integer getUpdaterId() {
-        return updaterId;
+    public Integer getFileType() {
+        return fileType;
     }
 
-    public void setUpdaterId(Integer updaterId) {
-        this.updaterId = updaterId;
+    public void setFileType(Integer fileType) {
+        this.fileType = fileType;
     }
 
-    public SugarAccount getUpdater() {
-        return updater;
+    public String getUpdaterName() {
+        return updaterName;
     }
 
-    public void setUpdater(SugarAccount updater) {
-        this.updater = updater;
+    public void setUpdaterName(String updaterName) {
+        this.updaterName = updaterName;
     }
 
     public Date getUpdateTime() {
@@ -126,11 +111,11 @@ public class SugarFile {
         this.updateTime = updateTime;
     }
 
-    public Integer getFileType() {
-        return fileType;
+    public Integer getUpdaterId() {
+        return updaterId;
     }
 
-    public void setFileType(Integer fileType) {
-        this.fileType = fileType;
+    public void setUpdaterId(Integer updaterId) {
+        this.updaterId = updaterId;
     }
 }

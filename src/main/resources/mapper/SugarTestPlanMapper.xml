@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarTestPlanDao">
+    <resultMap id="SugarTestPlan" type="jc.sugar.JiaHui.entity.SugarTestPlan">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="projectId" column="project_id"/>
+        <result property="remark" column="remark"/>
+        <result property="hashTreeJson" column="hash_tree_json"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updaterId" column="updater_id"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="project" column="project_id">
+            <result property="id" column="project_id"/>
+            <result property="name" column="project_name"/>
+        </association>
+        <association property="creator" column="creator_id">
+            <result property="id" column="creator_id"/>
+            <result property="username" column="creator_name"/>
+        </association>
+        <association property="updater" column="updater_id">
+            <result property="id" column="updater_id"/>
+            <result property="username" column="updater_name"/>
+        </association>
+    </resultMap>
+    
+    
+    <sql id="all">id, name, project_id, remark, hash_tree_json, creator_id, create_time, updater_id, updater_time</sql>
+    
+    <!-- 保存测试计划 -->
+    <insert id="saveTestPlan" parameterType="jc.sugar.JiaHui.entity.SugarTestPlan" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO sugar_test_plan (name, project_id, remark, hash_tree_json, creator_id)
+        VALUES (#{name}, #{projectId}, #{remark}, #{hashTreeJson}, #{creatorId})
+    </insert>
+
+
+    <!-- 更新测试计划 -->
+    <update id="updateTestPlanById" parameterType="jc.sugar.JiaHui.entity.SugarTestPlan">
+        UPDATE sugar_test_plan
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark},
+            </if>
+            <if test="hashTreeJson != null and hashTreeJson != ''">
+                hash_tree_json = #{hashTreeJson},
+            </if>
+            <if test="updaterId != null">
+                updater_id = #{updaterId},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <!-- 查询指定id的测试计划 -->
+    <select id="fetchTestPlanById" parameterType="java.lang.Integer" resultMap="SugarTestPlan">
+        SELECT
+            tp.id id,
+            tp.name name,
+            tp.project_id project_id,
+            tp.remark remark,
+            tp.hash_tree_json hash_tree_json,
+            tp.creator_id creator_id,
+            tp.create_time create_time,
+            tp.updater_id updater_id,
+            tp.update_time update_time
+        FROM sugar_test_plan tp
+        JOIN sugar_project p ON tp.project_id = p.id
+        JOIN sugar_account c ON tp.creator_id = c.id
+        LEFT JOIN sugar_account u ON tp.updater_id = u.id
+        WHERE tp.id = #{id}
+    </select>
+
+
+    <!-- 查询测试计划 -->
+    <select id="fetchTestPlan" parameterType="jc.sugar.JiaHui.entity.query.JMXQuery" resultMap="SugarTestPlan">
+        SELECT tpc.*, su.username updater_name
+        FROM (
+            SELECT
+                tp.id id,
+                tp.name name,
+                tp.project_id project_id,
+                tp.hash_tree_json hash_tree_json,
+                tp.remark remark,
+                tp.creator_id creator_id,
+                tp.updater_id updater_id,
+                tp.create_time create_time,
+                tp.update_time update_time,
+                pr.name project_name,
+                sa.username creator_name
+            FROM sugar_test_plan tp, sugar_account sa, sugar_project pr
+                <where>
+                    tp.project_id = pr.id AND tp.creator_id = sa.id
+                    <if test="name != null and name != ''">
+                        AND tp.name LIKE CONCAT('%', #{name}, '%')
+                    </if>
+                    <if test="projectName != null and projectName != ''">
+                        AND pr.name LIKE CONCAT('%', #{projectName}, '%')
+                    </if>
+                    <if test="creatorName != null and creatorName != ''">
+                        AND sa.username = #{creatorName}
+                    </if>
+                </where>
+            ) tpc
+        LEFT JOIN sugar_account su ON tpc.updater_id = su.id
+            <where>
+                <if test="updaterName != null and updaterName != ''">
+                    su.username LIKE CONCAT('%', #{updaterName}, '%')
+                </if>
+            </where>
+    </select>
+    
+    
+    <!-- 删除指定ID的测试计划 -->
+    <delete id="deleteTestPlanById" parameterType="java.lang.Integer">
+        DELETE FROM sugar_test_plan WHERE id = #{id}
+    </delete>
+</mapper>

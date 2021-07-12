@@ -1,9 +1,10 @@
 package jc.sugar.JiaHui.service.impl;
 
-import jc.sugar.JiaHui.entity.SugarJMeterResultCollector;
+import jc.sugar.JiaHui.entity.SugarJMeterRuntimeResultCollector;
 import jc.sugar.JiaHui.entity.vo.JMeterExecutionVO;
 import jc.sugar.JiaHui.jmeter.JMeterHashTreeUtil;
 import jc.sugar.JiaHui.jmeter.JMeterInitializer;
+import jc.sugar.JiaHui.jmeter.SugarJMeterContext;
 import jc.sugar.JiaHui.jmeter.exceptions.JMeterExecutionException;
 import jc.sugar.JiaHui.jmeter.exceptions.JMeterTestElementMapperException;
 import jc.sugar.JiaHui.service.SugarJMeterSampleEventWebSocketService;
@@ -15,6 +16,7 @@ import org.apache.jmeter.testelement.TestPlan;
 import org.apache.jorphan.collections.HashTree;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
@@ -32,6 +34,12 @@ public class SugarJMeterServiceImpl implements SugarJMeterService {
 
     @Override
     public ConcurrentLinkedDeque<SampleEvent> executing(JMeterExecutionVO executionVO) throws JMeterTestElementMapperException, JMeterExecutionException {
+        try {
+            SugarJMeterContext.resetSugarJMeterContextClassLoader();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new JMeterExecutionException("类加载器重置失败！");
+        }
         JMeterInitializer.initialize();
         StandardJMeterEngine engine = JMeterInitializer.EXECUTORS.get(executionVO.getExecutorId());
         if(engine == null){
@@ -44,7 +52,7 @@ public class SugarJMeterServiceImpl implements SugarJMeterService {
         }
 
         HashTree testPlanHashTree = JMeterHashTreeUtil.toHashTree(executionVO.getTestPlanList());
-        SugarJMeterResultCollector resultCollector = new SugarJMeterResultCollector(webSocketService, executionVO.getExecutorId());
+        SugarJMeterRuntimeResultCollector resultCollector = new SugarJMeterRuntimeResultCollector(webSocketService, executionVO.getExecutorId());
         Object testElement = testPlanHashTree.getArray()[0];
         if(testElement instanceof TestPlan){
             testPlanHashTree.add(testElement, resultCollector);

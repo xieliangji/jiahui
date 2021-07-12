@@ -1,10 +1,12 @@
 package jc.sugar.JiaHui.entity;
 
 import jc.sugar.JiaHui.exception.SugarJMeterException;
+import jc.sugar.JiaHui.jmeter.JMeterInitializer;
 import jc.sugar.JiaHui.service.SugarJMeterSampleEventWebSocketService;
 import org.apache.jmeter.reporters.ResultCollector;
 import org.apache.jmeter.samplers.SampleEvent;
 import org.apache.jmeter.samplers.SampleResult;
+import org.apache.jmeter.util.JMeterUtils;
 
 import java.util.concurrent.ConcurrentLinkedDeque;
 
@@ -16,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
  * 2、原测试计划的监听器元素会被删除，取而代之的是往原测试计划中注入一个SugarJMeterResultCollector
  * 3、SugarJMeterResultCollector会在有SampleEvent时，通过WebSocket服务向前端发送SampleEvent
  */
-public class SugarJMeterResultCollector extends ResultCollector {
+public class SugarJMeterRuntimeResultCollector extends ResultCollector {
 
     private final ConcurrentLinkedDeque<SampleEvent> sampleEvents = new ConcurrentLinkedDeque<>();
 
@@ -24,9 +26,9 @@ public class SugarJMeterResultCollector extends ResultCollector {
 
     private String executorId;
 
-    public SugarJMeterResultCollector(){}
+    public SugarJMeterRuntimeResultCollector(){}
 
-    public SugarJMeterResultCollector(SugarJMeterSampleEventWebSocketService webSocketService, String executorId){
+    public SugarJMeterRuntimeResultCollector(SugarJMeterSampleEventWebSocketService webSocketService, String executorId){
         this.webSocketService = webSocketService;
         this.executorId = executorId;
     }
@@ -55,8 +57,9 @@ public class SugarJMeterResultCollector extends ResultCollector {
     }
 
 
-    private void setSampleResultParentNull(SampleResult sampleResult){
+    public static void setSampleResultParentNull(SampleResult sampleResult){
         sampleResult.setParent(null);
+        sampleResult.setDataEncoding("UTF-8");
         SampleResult[] subResults = sampleResult.getSubResults();
         for(SampleResult subResult: subResults){
             setSampleResultParentNull(subResult);
