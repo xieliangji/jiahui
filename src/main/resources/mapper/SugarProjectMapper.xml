@@ -7,12 +7,22 @@
         <result column="remark" property="remark" javaType="java.lang.String"/>
         <result column="creator_id" property="creatorId" javaType="java.lang.Integer"/>
         <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="updater_id" property="updaterId" javaType="java.lang.Integer"/>
         <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <association property="creator" column="creator_id">
+            <result column="creator_id" property="id"/>
+            <result column="creator_name" property="username"/>
+        </association>
+        <association property="updater" column="updater_id">
+            <result column="updater_id" property="id"/>
+            <result column="updater_name" property="username"/>
+        </association>
         <collection property="members" ofType="jc.sugar.JiaHui.entity.SugarAccount">
             <id property="id" column="account_id"/>
             <result property="username" column="account_name"/>
-            <result property="email" column="email"/>
+            <result property="email" column="account_email"/>
         </collection>
+
     </resultMap>
 
 
@@ -45,32 +55,32 @@
 
 
     <select id="queryProject" parameterType="jc.sugar.JiaHui.entity.query.ProjectQuery" resultMap="Project">
-        SELECT
-        pr.*,
-        sa.id account_id,
-        sa.username account_name,
-        sa.email email
-        FROM (
-        SELECT
-        p.id id,
-        p.name name,
-        p.remark remark,
-        p.creator_id creator_id,
-        p.create_time create_time,
-        p.update_time update_time
-        FROM sugar_project p, sugar_account_project ap, sugar_account a
-        <where>
-            ap.account_id = #{accountId}
-            <if test="creatorName != null and creatorName != ''">
-                AND a.username = #{creatorName}
-            </if>
-            <if test="name != null and name != ''">
-                AND p.name LIKE concat('%', #{name}, '%')
-            </if>
-            AND p.id = ap.project_id
+        SELECT sp.*, sa.username account_name, sa.id account_id, sa.email account_email FROM (
+            SELECT
+                p.id id,
+                p.name name,
+                p.remark remark,
+                p.creator_id creator_id,
+                p.updater_id updater_id,
+                p.create_time create_time,
+                p.update_time update_time,
+                ca.username creator_name,
+                ua.username updater_name
+            FROM sugar_project p
+            JOIN sugar_account_project ap ON p.id = ap.project_id AND ap.account_id = #{accountId}
+            JOIN sugar_account ca ON p.creator_id = ca.id
+            LEFT JOIN sugar_account ua ON p.updater_id = ua.id
+            <where>
+                <if test="name != null and name != ''">
+                    AND p.name LIKE CONCAT('%', #{name}, '%')
+                </if>
+                <if test="creatorName != null and creatorName != ''">
+                    AND ca.username = #{creatorName}
+                </if>
             </where>
-        ) pr, sugar_account sa, sugar_account_project sap
-        WHERE pr.id = sap.project_id AND sa.id = sap.account_id
+        ) sp
+        JOIN sugar_account_project sap ON sp.id = sap.project_id
+        JOIN sugar_account sa ON sap.account_id = sa.id
     </select>
 
 
@@ -84,7 +94,7 @@
             p.update_time update_time,
             a.id account_id,
             a.username account_name,
-            a.email email
+            a.email account_email
         FROM
             sugar_project p, sugar_account_project ap, sugar_account a
         WHERE p.id = #{id} AND p.id = ap.project_id AND a.id = ap.account_id

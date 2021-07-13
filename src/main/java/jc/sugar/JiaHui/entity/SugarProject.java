@@ -21,7 +21,13 @@ public class SugarProject {
     private Integer creatorId;
 
 
+    private SugarAccount creator;
+
+
     private Integer updaterId;
+
+
+    private SugarAccount updater;
 
 
     private Date createTime;
@@ -99,5 +105,21 @@ public class SugarProject {
 
     public void setUpdaterId(Integer updaterId) {
         this.updaterId = updaterId;
+    }
+
+    public SugarAccount getCreator() {
+        return creator;
+    }
+
+    public void setCreator(SugarAccount creator) {
+        this.creator = creator;
+    }
+
+    public SugarAccount getUpdater() {
+        return updater;
+    }
+
+    public void setUpdater(SugarAccount updater) {
+        this.updater = updater;
     }
 }

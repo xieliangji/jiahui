@@ -10,8 +10,6 @@ import java.io.IOException;
 @SpringBootApplication
 @MapperScan(basePackages = {"jc.sugar.JiaHui.dao"})
 public class JiaHuiApplication {
-
-
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		JMeterInitializer.initialize();
 		SpringApplication.run(JiaHuiApplication.class, args);

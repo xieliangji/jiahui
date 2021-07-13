@@ -43,6 +43,11 @@ public class SugarProjectDTO {
      */
     private Date updateTime;
 
+
+
+    private String updaterName;
+
+
     /**
      * 项目成员列表
      */
@@ -112,5 +117,13 @@ public class SugarProjectDTO {
 
     public void setCreatorName(String creatorName) {
         this.creatorName = creatorName;
+    }
+
+    public String getUpdaterName() {
+        return updaterName;
+    }
+
+    public void setUpdaterName(String updaterName) {
+        this.updaterName = updaterName;
     }
 }

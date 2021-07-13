@@ -1,9 +1,8 @@
 package jc.sugar.JiaHui.dao;
 
+import com.github.pagehelper.Page;
 import jc.sugar.JiaHui.entity.SugarProject;
 import jc.sugar.JiaHui.entity.query.ProjectQuery;
-
-import java.util.List;
 
 /**
  * 2021/5/25 11:48
@@ -14,7 +13,7 @@ public interface SugarProjectDao {
     Integer saveProject(SugarProject project) throws Exception;
 
 
-    List<SugarProject> queryProject(ProjectQuery query) throws Exception;
+    Page<SugarProject> queryProject(ProjectQuery query) throws Exception;
 
 
     Integer updateProject(SugarProject project) throws Exception;

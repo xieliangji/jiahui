@@ -1,5 +1,8 @@
 package jc.sugar.JiaHui.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import jc.sugar.JiaHui.dao.SugarProjectDao;
 import jc.sugar.JiaHui.dao.SugarProjectMemberDao;
 import jc.sugar.JiaHui.entity.SugarAccount;
@@ -36,34 +39,47 @@ public class SugarProjectServiceImpl implements SugarProjectService {
     }
 
     @Override
-    public List<SugarProjectDTO> queryProjects(ProjectQueryVO queryVO) throws SugarProjectException {
+    public PageInfo<SugarProjectDTO> queryProjects(ProjectQueryVO queryVO) throws SugarProjectException {
+        if(queryVO.getPageNum() == null || queryVO.getPageSize() == null){
+            PageHelper.startPage(1, 10);
+        } else {
+            PageHelper.startPage(queryVO.getPageNum(), queryVO.getPageSize());
+        }
+
         ProjectQuery query = new ProjectQuery();
         query.setName(queryVO.getName());
         query.setCreatorName(queryVO.getCreatorName());
         query.setAccountId(queryVO.getAccountId());
+
         try {
-            List<SugarProject> projects = projectDao.queryProject(query);
-            List<SugarProjectDTO> projectDtos = projects.stream().map(project -> {
-                SugarProjectDTO projectDto = new SugarProjectDTO();
-                projectDto.setId(project.getId());
-                projectDto.setName(project.getName());
-                projectDto.setRemark(project.getRemark());
-                projectDto.setCreatorId(project.getCreatorId());
-                projectDto.setCreateTime(project.getCreateTime());
-                projectDto.setUpdateTime(project.getUpdateTime());
-                projectDto.setMembers(project.getMembers().stream().map(account -> {
+            Page<SugarProject> projects = projectDao.queryProject(query);
+            Page<SugarProjectDTO> projectDTOS = new Page<>();
+            projectDTOS.setPageNum(projects.getPageNum());
+            projectDTOS.setPageSize(projects.getPageSize());
+            projectDTOS.setTotal(projects.getTotal());
+
+            for(SugarProject project: projects){
+                SugarProjectDTO projectDTO = new SugarProjectDTO();
+                projectDTO.setId(project.getId());
+                projectDTO.setName(project.getName());
+                projectDTO.setRemark(project.getRemark());
+                projectDTO.setCreatorId(project.getCreatorId());
+                projectDTO.setCreateTime(project.getCreateTime());
+                projectDTO.setCreatorName(project.getCreator().getUsername());
+                if(project.getUpdater() != null){
+                    projectDTO.setUpdaterName(project.getUpdater().getUsername());
+                }
+                projectDTO.setUpdateTime(project.getUpdateTime());
+                projectDTO.setMembers(project.getMembers().stream().map(account -> {
                     SugarAccountDTO accountDto = new SugarAccountDTO();
                     accountDto.setId(account.getId());
                     accountDto.setUsername(account.getUsername());
                     accountDto.setEmail(account.getEmail());
-                    if(account.getId() == project.getCreatorId()){
-                        projectDto.setCreatorName(account.getUsername());
-                    }
                     return accountDto;
                 }).collect(Collectors.toList()));
-                return projectDto;
-            }).collect(Collectors.toList());
-            return projectDtos;
+                projectDTOS.add(projectDTO);
+            }
+            return projectDTOS.toPageInfo();
         } catch (Exception e) {
             throw new SugarProjectException(e);
         }

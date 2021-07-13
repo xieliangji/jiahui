@@ -1,5 +1,6 @@
 package jc.sugar.JiaHui.controller;
 
+import com.github.pagehelper.PageInfo;
 import jc.sugar.JiaHui.entity.SugarResponse;
 import jc.sugar.JiaHui.entity.dto.SugarProjectDTO;
 import jc.sugar.JiaHui.entity.vo.ProjectQueryVO;
@@ -11,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @Code 谢良基 2021/6/23
@@ -30,9 +29,9 @@ public class SugarProjectController {
 
     @RequestMapping("/query")
     @ResponseBody
-    public SugarResponse<List<SugarProjectDTO>> fetchProjects(@RequestBody ProjectQueryVO queryVO){
+    public SugarResponse<PageInfo<SugarProjectDTO>> fetchProjects(@RequestBody ProjectQueryVO queryVO){
         try {
-            List<SugarProjectDTO> payload = projectService.queryProjects(queryVO);
+            PageInfo<SugarProjectDTO> payload = projectService.queryProjects(queryVO);
             return SugarResponse.success(payload, "");
         } catch (SugarProjectException e) {
             e.printStackTrace();
