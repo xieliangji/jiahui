@@ -327,9 +327,6 @@
                             <resources>
                                 <resource>
                                     <directory>src/main/resources</directory>
-                                    <includes>
-                                        <!-- <include>*.properties</include> -->
-                                    </includes>
                                 </resource>
                             </resources>
                             <outputDirectory>${project.build.directory}/resources</outputDirectory>
@@ -351,7 +348,7 @@
                             <artifactId>null</artifactId>
                         </include>
                     </includes>
-                    <layout>ZIP</layout>
+                    <layout>JAR</layout>
                     <!--Use external configuration file, no resource file in jar package-->
                     <addResources>true</addResources>
                     <outputDirectory>${project.build.directory}/resources</outputDirectory>

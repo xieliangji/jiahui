@@ -38,6 +38,29 @@
     </insert>
 
 
+    <select id="fetchReportById" parameterType="java.lang.Integer" resultMap="SugarReport">
+        SELECT
+            r.id id,
+            r.name name,
+            r.test_plan_id test_plan_id,
+            r.start_time start_time,
+            r.end_time end_time,
+            r.status status,
+            r.creator_id creator_id,
+            r.sample_results sample_results,
+            r.description description,
+            r.create_time create_time,
+            tp.name test_plan_name,
+            p.name project_name,
+            a.username username
+        FROM sugar_report r
+        JOIN sugar_test_plan tp ON r.test_plan_id = tp.id
+        JOIN sugar_project p ON tp.project_id = p.id
+        JOIN sugar_account a ON r.creator_id = a.id
+        WHERE r.id = #{id}
+    </select>
+
+
     <!-- 查询测试报告 -->
     <select id="fetchReports" parameterType="jc.sugar.JiaHui.entity.query.ReportQuery" resultMap="SugarReport">
         SELECT
@@ -48,7 +71,7 @@
             r.end_time end_time,
             r.status status,
             r.creator_id creator_id,
-            r.sample_results sample_results,
+--             r.sample_results sample_results,
             r.description description,
             r.create_time create_time,
             stp.test_plan_name test_plan_name,

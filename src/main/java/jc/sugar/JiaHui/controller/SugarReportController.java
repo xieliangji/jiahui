@@ -51,4 +51,17 @@ public class SugarReportController {
             return new SugarResponse<>(10086, null, e.getMessage());
         }
     }
+
+
+    @ResponseBody
+    @RequestMapping("/fetchReport")
+    public SugarResponse<SugarReportDTO> fetchReport(Integer id){
+        try {
+            SugarReportDTO payload = reportService.fetchReport(id);
+            return SugarResponse.success(payload, "");
+        } catch (SugarReportException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
 }

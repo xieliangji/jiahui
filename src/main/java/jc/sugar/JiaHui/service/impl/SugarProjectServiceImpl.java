@@ -43,7 +43,6 @@ public class SugarProjectServiceImpl implements SugarProjectService {
         query.setAccountId(queryVO.getAccountId());
         try {
             List<SugarProject> projects = projectDao.queryProject(query);
-            System.out.println(projects);
             List<SugarProjectDTO> projectDtos = projects.stream().map(project -> {
                 SugarProjectDTO projectDto = new SugarProjectDTO();
                 projectDto.setId(project.getId());

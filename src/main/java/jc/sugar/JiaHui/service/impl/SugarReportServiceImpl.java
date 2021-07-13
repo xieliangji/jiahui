@@ -16,7 +16,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
@@ -71,8 +70,8 @@ public class SugarReportServiceImpl implements SugarReportService {
                 reportDTO.setCreatorName(report.getCreator().getUsername());
                 reportDTO.setStatus(report.getStatus());
                 reportDTO.setDescription(report.getDescription());
-                String sampleResults = GZipUtil.uncompress(report.getSampleResults());
-                reportDTO.setResults(new ObjectMapper().readValue(sampleResults, ConcurrentLinkedDeque.class));
+//                String sampleResults = GZipUtil.uncompress(report.getSampleResults());
+//                reportDTO.setResults(new ObjectMapper().readValue(sampleResults, ConcurrentLinkedDeque.class));
                 reportDTO.setStartTime(report.getStartTime());
                 reportDTO.setEndTime(report.getEndTime());
                 reportDTO.setCreateTime(report.getCreateTime());
@@ -96,6 +95,38 @@ public class SugarReportServiceImpl implements SugarReportService {
 
         try {
             return reportDao.deleteReportById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SugarReportException(e);
+        }
+    }
+
+    @Override
+    public SugarReportDTO fetchReport(Integer id) throws SugarReportException {
+        if(id == null){
+            throw new SugarReportException("测试报告id不能为空");
+        }
+
+        try {
+            SugarReport report = reportDao.fetchReportById(id);
+            SugarReportDTO reportDTO = new SugarReportDTO();
+            reportDTO.setId(report.getId());
+            reportDTO.setName(report.getName());
+            reportDTO.setTestPlanId(report.getTestPlanId());
+            reportDTO.setTestPlanName(report.getTestPlan().getName());
+            reportDTO.setProjectId(report.getTestPlan().getProjectId());
+            reportDTO.setProjectName(report.getTestPlan().getProject().getName());
+            reportDTO.setCreatorId(report.getCreatorId());
+            reportDTO.setCreatorName(report.getCreator().getUsername());
+            reportDTO.setStatus(report.getStatus());
+            reportDTO.setDescription(report.getDescription());
+            String sampleResults = GZipUtil.uncompress(report.getSampleResults());
+            reportDTO.setResults(new ObjectMapper().readValue(sampleResults, ConcurrentLinkedDeque.class));
+            reportDTO.setStartTime(report.getStartTime());
+            reportDTO.setEndTime(report.getEndTime());
+            reportDTO.setCreateTime(report.getCreateTime());
+
+            return reportDTO;
         } catch (Exception e) {
             e.printStackTrace();
             throw new SugarReportException(e);

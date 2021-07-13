@@ -13,4 +13,6 @@ public interface SugarReportService {
     PageInfo<SugarReportDTO> fetchReports(ReportQueryVO reportQueryVO) throws SugarReportException;
 
     Integer deleteReport(Integer id) throws SugarReportException;
+
+    SugarReportDTO fetchReport(Integer id) throws SugarReportException;
 }

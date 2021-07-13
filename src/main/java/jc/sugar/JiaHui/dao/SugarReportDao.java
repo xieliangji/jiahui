@@ -16,4 +16,7 @@ public interface SugarReportDao {
 
 
     Integer deleteReportById(Integer id) throws Exception;
+
+
+    SugarReport fetchReportById(Integer id) throws Exception;
 }
