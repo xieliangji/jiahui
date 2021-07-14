@@ -19,4 +19,6 @@ public interface SugarProjectService {
     Integer updateProject(ProjectUpdateVO updateProject) throws SugarProjectException;
 
     Integer deleteProject(Integer id) throws SugarProjectException;
+
+    SugarProjectDTO fetchProject(Integer id) throws SugarProjectException;
 }

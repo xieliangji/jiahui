@@ -77,4 +77,17 @@ public class SugarProjectController {
             return new SugarResponse<>(10086, null, e.getMessage());
         }
     }
+
+
+    @RequestMapping("/fetch")
+    @ResponseBody
+    public SugarResponse<SugarProjectDTO> fetchProject(Integer id){
+        try {
+            SugarProjectDTO payload = projectService.fetchProject(id);
+            return SugarResponse.success(payload, "");
+        } catch (SugarProjectException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
 }

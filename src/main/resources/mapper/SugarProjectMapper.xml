@@ -44,6 +44,9 @@
             <if test="remark != null">
                 remark = #{remark},
             </if>
+            <if test="updaterId != null">
+                updater_id = #{updaterId},
+            </if>
         </trim>
         WHERE id = #{id}
     </update>
@@ -55,32 +58,28 @@
 
 
     <select id="queryProject" parameterType="jc.sugar.JiaHui.entity.query.ProjectQuery" resultMap="Project">
-        SELECT sp.*, sa.username account_name, sa.id account_id, sa.email account_email FROM (
-            SELECT
-                p.id id,
-                p.name name,
-                p.remark remark,
-                p.creator_id creator_id,
-                p.updater_id updater_id,
-                p.create_time create_time,
-                p.update_time update_time,
-                ca.username creator_name,
-                ua.username updater_name
-            FROM sugar_project p
-            JOIN sugar_account_project ap ON p.id = ap.project_id AND ap.account_id = #{accountId}
-            JOIN sugar_account ca ON p.creator_id = ca.id
-            LEFT JOIN sugar_account ua ON p.updater_id = ua.id
-            <where>
-                <if test="name != null and name != ''">
-                    AND p.name LIKE CONCAT('%', #{name}, '%')
-                </if>
-                <if test="creatorName != null and creatorName != ''">
-                    AND ca.username = #{creatorName}
-                </if>
-            </where>
-        ) sp
-        JOIN sugar_account_project sap ON sp.id = sap.project_id
-        JOIN sugar_account sa ON sap.account_id = sa.id
+        SELECT
+        p.id id,
+        p.name name,
+        p.remark remark,
+        p.creator_id creator_id,
+        p.updater_id updater_id,
+        p.create_time create_time,
+        p.update_time update_time,
+        ca.username creator_name,
+        ua.username updater_name
+        FROM sugar_project p
+        JOIN sugar_account_project ap ON p.id = ap.project_id AND ap.account_id = #{accountId}
+        JOIN sugar_account ca ON p.creator_id = ca.id
+        LEFT JOIN sugar_account ua ON p.updater_id = ua.id
+        <where>
+            <if test="name != null and name != ''">
+                AND p.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                AND ca.username = #{creatorName}
+            </if>
+        </where>
     </select>
 
 
@@ -90,13 +89,19 @@
             p.name name,
             p.remark remark,
             p.creator_id creator_id,
+            p.updater_id updater_id,
             p.create_time create_time,
             p.update_time update_time,
-            a.id account_id,
-            a.username account_name,
-            a.email account_email
-        FROM
-            sugar_project p, sugar_account_project ap, sugar_account a
-        WHERE p.id = #{id} AND p.id = ap.project_id AND a.id = ap.account_id
+            ua.username updater_name,
+            ca.username creator_name,
+            sa.id account_id,
+            sa.username account_name,
+            sa.email account_email
+        FROM sugar_project p
+        JOIN sugar_account_project ap ON p.id = ap.project_id
+        JOIN sugar_account sa ON sa.id = ap.account_id
+        JOIN sugar_account ca ON ca.id = p.creator_id
+        LEFT JOIN sugar_account ua ON p.updater_id = ua.id
+        WHERE p.id = #{id}
     </select>
 </mapper>

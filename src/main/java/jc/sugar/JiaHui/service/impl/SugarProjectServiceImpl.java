@@ -156,6 +156,41 @@ public class SugarProjectServiceImpl implements SugarProjectService {
     }
 
     @Override
+    public SugarProjectDTO fetchProject(Integer id) throws SugarProjectException {
+        if(id == null){
+            throw new SugarProjectException("项目ID未指定");
+        }
+
+        try {
+            SugarProject project = projectDao.fetchProjectById(id);
+            SugarProjectDTO projectDTO = new SugarProjectDTO();
+            projectDTO.setId(project.getId());
+            projectDTO.setName(project.getName());
+            projectDTO.setRemark(project.getRemark());
+            projectDTO.setCreatorId(project.getCreatorId());
+            projectDTO.setCreatorName(project.getCreator().getUsername());
+            projectDTO.setCreateTime(project.getCreateTime());
+            if(project.getUpdater() != null){
+                projectDTO.setUpdaterName(project.getUpdater().getUsername());
+                projectDTO.setUpdateTime(project.getUpdateTime());
+            }
+            projectDTO.setMembers(project.getMembers().stream().map(account -> {
+                SugarAccountDTO accountDTO = new SugarAccountDTO();
+                accountDTO.setId(account.getId());
+                accountDTO.setEmail(account.getEmail());
+                accountDTO.setUsername(account.getUsername());
+                accountDTO.setCreateTime(account.getCreateTime());
+                accountDTO.setUsername(account.getUsername());
+                return accountDTO;
+            }).collect(Collectors.toList()));
+            return projectDTO;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SugarProjectException(e);
+        }
+    }
+
+    @Override
     public SugarProjectDTO saveProject(ProjectSaveVO saveProject) throws SugarProjectException {
         String validateResult = validateNewProject(saveProject);
         if(!StringUtils.isEmpty(validateResult)){
