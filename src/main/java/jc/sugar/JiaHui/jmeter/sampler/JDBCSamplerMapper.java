@@ -4,6 +4,7 @@ import jc.sugar.JiaHui.jmeter.*;
 import org.apache.jmeter.protocol.jdbc.AbstractJDBCTestElement;
 import org.apache.jmeter.protocol.jdbc.sampler.JDBCSampler;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.apache.jorphan.util.Converter.getString;
@@ -32,6 +33,14 @@ public class JDBCSamplerMapper extends AbstractJMeterElementMapper<JDBCSampler> 
 
     private JDBCSamplerMapper(JDBCSampler element, Map<String, Object> attributes) {
         super(element, attributes);
+    }
+
+    public JDBCSamplerMapper(Map<String, Object> attributes){
+        this(new JDBCSampler(), attributes);
+    }
+
+    public JDBCSamplerMapper(JDBCSampler element){
+        this(element, new HashMap<>());
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class SugarObjectUtil {
 
     public static String toJsonString(Object obj){
-
         try {
             return new ObjectMapper().writeValueAsString(obj);
         } catch (JsonProcessingException e) {
