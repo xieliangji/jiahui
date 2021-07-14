@@ -17,6 +17,8 @@ public class TestPlanQuery {
 
     private String updaterName;
 
+    private Integer accountId;
+
     public TestPlanQuery(){
 
     }
@@ -67,5 +69,13 @@ public class TestPlanQuery {
 
     public void setUpdaterName(String updaterName) {
         this.updaterName = updaterName;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 }

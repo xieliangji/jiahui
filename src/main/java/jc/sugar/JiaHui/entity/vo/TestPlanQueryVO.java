@@ -17,6 +17,8 @@ public class TestPlanQueryVO {
 
     private String projectName;
 
+    private Integer accountId;
+
     public TestPlanQueryVO(){}
 
     public Integer getPageSize() {
@@ -65,5 +67,13 @@ public class TestPlanQueryVO {
 
     public void setUpdaterName(String updaterName) {
         this.updaterName = updaterName;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 }

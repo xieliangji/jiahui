@@ -149,6 +149,7 @@ public class SugarTestPlanServiceImpl implements SugarTestPlanService {
         jmxQuery.setProjectName(testPlanQueryVO.getProjectName());
         jmxQuery.setCreatorName(testPlanQueryVO.getCreatorName());
         jmxQuery.setUpdaterName(testPlanQueryVO.getUpdaterName());
+        jmxQuery.setAccountId(testPlanQueryVO.getAccountId());
         try {
             Page<SugarTestPlan> testPlans = testPlanDao.fetchTestPlan(jmxQuery);
             Page<SugarTestPlanDTO> dtos = new Page<>();

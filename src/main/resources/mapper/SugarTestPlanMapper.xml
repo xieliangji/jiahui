@@ -78,40 +78,40 @@
 
     <!-- 查询测试计划 -->
     <select id="fetchTestPlan" parameterType="jc.sugar.JiaHui.entity.query.TestPlanQuery" resultMap="SugarTestPlan">
-        SELECT tpc.*, su.username updater_name
-        FROM (
-            SELECT
-                tp.id id,
-                tp.name name,
-                tp.project_id project_id,
-                tp.hash_tree_json hash_tree_json,
-                tp.remark remark,
-                tp.creator_id creator_id,
-                tp.updater_id updater_id,
-                tp.create_time create_time,
-                tp.update_time update_time,
-                pr.name project_name,
-                sa.username creator_name
-            FROM sugar_test_plan tp, sugar_account sa, sugar_project pr
-                <where>
-                    tp.project_id = pr.id AND tp.creator_id = sa.id
-                    <if test="name != null and name != ''">
-                        AND tp.name LIKE CONCAT('%', #{name}, '%')
-                    </if>
-                    <if test="projectName != null and projectName != ''">
-                        AND pr.name LIKE CONCAT('%', #{projectName}, '%')
-                    </if>
-                    <if test="creatorName != null and creatorName != ''">
-                        AND sa.username = #{creatorName}
-                    </if>
-                </where>
-            ) tpc
-        LEFT JOIN sugar_account su ON tpc.updater_id = su.id
-            <where>
-                <if test="updaterName != null and updaterName != ''">
-                    su.username LIKE CONCAT('%', #{updaterName}, '%')
-                </if>
-            </where>
+        <!-- 只查找当前用户所属项目下的测试计划 -->
+        SELECT
+               tp.id id,
+               tp.name name,
+               tp.project_id project_id,
+               tp.hash_tree_json hash_tree_json,
+               tp.remark remark,
+               tp.creator_id creator_id,
+               tp.updater_id updater_id,
+               tp.create_time create_time,
+               tp.update_time update_time,
+               sp.name project_name,
+               ca.username creator_name,
+               ua.username updater_name
+        FROM sugar_test_plan tp
+        JOIN sugar_account_project sap ON tp.project_id = sap.project_id
+        JOIN sugar_project sp ON tp.project_id = sp.id
+        JOIN sugar_account ca ON tp.creator_id = ca.id
+        LEFT JOIN sugar_account ua ON tp.updater_id = ua.id
+        <where>
+            sap.account_id = #{accountId}
+            <if test="name != null and name != ''">
+                AND tp.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="projectName != null and projectName != ''">
+                AND sp.name LIKE CONCAT('%', #{projectName}, '%')
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                AND ca.username = #{creatorName}
+            </if>
+            <if test="updaterName != null and updaterName != ''">
+                AND ua.username = #{updaterName}
+            </if>
+        </where>
     </select>
     
     
