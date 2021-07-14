@@ -11,7 +11,7 @@ import jc.sugar.JiaHui.entity.SugarJMeterReportResultCollector;
 import jc.sugar.JiaHui.entity.SugarReport;
 import jc.sugar.JiaHui.entity.SugarTestPlan;
 import jc.sugar.JiaHui.entity.dto.SugarTestPlanDTO;
-import jc.sugar.JiaHui.entity.query.JMXQuery;
+import jc.sugar.JiaHui.entity.query.TestPlanQuery;
 import jc.sugar.JiaHui.entity.vo.TestPlanExecuteVO;
 import jc.sugar.JiaHui.entity.vo.TestPlanQueryVO;
 import jc.sugar.JiaHui.entity.vo.TestPlanSaveVO;
@@ -144,7 +144,7 @@ public class SugarTestPlanServiceImpl implements SugarTestPlanService {
             PageHelper.startPage(testPlanQueryVO.getPageNum(), testPlanQueryVO.getPageSize());
         }
 
-        JMXQuery jmxQuery = new JMXQuery();
+        TestPlanQuery jmxQuery = new TestPlanQuery();
         jmxQuery.setName(testPlanQueryVO.getName());
         jmxQuery.setProjectName(testPlanQueryVO.getProjectName());
         jmxQuery.setCreatorName(testPlanQueryVO.getCreatorName());

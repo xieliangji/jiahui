@@ -77,7 +77,7 @@
 
 
     <!-- 查询测试计划 -->
-    <select id="fetchTestPlan" parameterType="jc.sugar.JiaHui.entity.query.JMXQuery" resultMap="SugarTestPlan">
+    <select id="fetchTestPlan" parameterType="jc.sugar.JiaHui.entity.query.TestPlanQuery" resultMap="SugarTestPlan">
         SELECT tpc.*, su.username updater_name
         FROM (
             SELECT

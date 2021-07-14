@@ -1,6 +1,5 @@
 package jc.sugar.JiaHui.service;
 
-import jc.sugar.JiaHui.entity.SugarJMeterSampleEvent;
 import jc.sugar.JiaHui.entity.SugarJMeterSamplerResult;
 import jc.sugar.JiaHui.exception.SugarJMeterException;
 

@@ -3,7 +3,7 @@ package jc.sugar.JiaHui.entity.query;
 /**
  * @Code 谢良基 2021/7/1
  */
-public class JMXQuery {
+public class TestPlanQuery {
 
     private Integer pageSize;
 
@@ -17,7 +17,7 @@ public class JMXQuery {
 
     private String updaterName;
 
-    public JMXQuery(){
+    public TestPlanQuery(){
 
     }
 
