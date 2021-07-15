@@ -29,7 +29,8 @@
     <sql id="all">id, name, project_id, remark, hash_tree_json, creator_id, create_time, updater_id, updater_time</sql>
     
     <!-- 保存测试计划 -->
-    <insert id="saveTestPlan" parameterType="jc.sugar.JiaHui.entity.SugarTestPlan" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert id="saveTestPlan" parameterType="jc.sugar.JiaHui.entity.SugarTestPlan" useGeneratedKeys="true"
+            keyProperty="id" keyColumn="id">
         INSERT INTO sugar_test_plan (name, project_id, remark, hash_tree_json, creator_id)
         VALUES (#{name}, #{projectId}, #{remark}, #{hashTreeJson}, #{creatorId})
     </insert>
