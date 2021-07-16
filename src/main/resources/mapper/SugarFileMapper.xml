@@ -38,7 +38,17 @@
 
 
     <select id="fetchFiles" parameterType="jc.sugar.JiaHui.entity.query.FileQuery" resultMap="SugarFile">
-        SELECT f.id id, f.name name, f.file_name file_name, f.remark remark, f.file_type file_type, f.uploader_id, f.updater_id, f.upload_time, f.update_time, ula.username uploader_name, uda.username updater_name
+        SELECT
+               f.id id,
+               f.name name,
+               f.file_name file_name,
+               f.remark remark,
+               f.file_type file_type,
+               f.uploader_id, f.updater_id,
+               f.upload_time upload_time,
+               f.update_time update_time,
+               ula.username uploader_name,
+               uda.username updater_name
         FROM sugar_file f
         JOIN sugar_account ula ON f.uploader_id = ula.id
         LEFT JOIN sugar_account uda ON f.updater_id = uda.id

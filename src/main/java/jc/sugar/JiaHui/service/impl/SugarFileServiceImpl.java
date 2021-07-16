@@ -154,7 +154,7 @@ public class SugarFileServiceImpl implements SugarFileService {
         sugarFile.setId(updateVO.getId());
         sugarFile.setName(updateVO.getName());
         sugarFile.setRemark(updateVO.getRemark());
-        sugarFile.setUploaderId(updateVO.getUpdaterId());
+        sugarFile.setUpdaterId(updateVO.getUpdaterId());
 
         try {
             return fileDao.updateFileById(sugarFile);
