@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarTaskDao">
+    <resultMap id="SugarTask" type="jc.sugar.JiaHui.entity.SugarTask">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="testPlanId" column="test_plan_id"/>
+        <result property="taskStatus" column="task_status"/>
+        <result property="cronExpression" column="cron_expression"/>
+        <result property="remark" column="remark"/>
+        <result property="creatorId" column="creator_id"/>
+        <result property="updaterId" column="updater_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <association property="creator" column="creator_id">
+            <result column="creator_id" property="id"/>
+            <result column="creator_name" property="username"/>
+        </association>
+        <association property="updater" column="updater_id">
+            <result column="updater_id" property="id"/>
+            <result column="updater_name" property="username"/>
+        </association>
+        <association property="testPlan" column="test_plan_id">
+            <result column="test_plan_id" property="id"/>
+            <result column="test_plan_name" property="name"/>
+        </association>
+    </resultMap>
+
+
+    <sql id="all_cols">id, name, test_plan_id, task_status, cron_expression, remark, creator_id, create_time, updater_id, update_time</sql>
+
+
+    <insert id="saveTask" parameterType="jc.sugar.JiaHui.entity.SugarTask" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO sugar_task (name, test_plan_id, task_status, cron_expression, remark, creator_id)
+        VALUES (#{name}, #{testPlanId}, #{taskStatus}, #{cronExpression}, #{remark}, #{creatorId})
+    </insert>
+
+
+    <update id="updateTask" parameterType="jc.sugar.JiaHui.entity.SugarTask">
+        UPDATE sugar_task
+        <set>
+            updater_id = #{updaterId},
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="testPlanId != null">
+                test_plan_id = #{testPlanId},
+            </if>
+            <if test="cronExpression != null and cronExpression != ''">
+                cron_expression = #{cronExpression},
+            </if>
+            <if test="taskStatus != null">
+                task_status = #{taskStatus},
+            </if>
+            <if test="remark != null">
+                remark = #{remark},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+
+    <delete id="deleteTask" parameterType="java.lang.Integer">
+        DELETE FROM sugar_task WHERE id = #{id}
+    </delete>
+
+
+    <select id="fetchTaskById" parameterType="java.lang.Integer" resultMap="SugarTask">
+        SELECT
+            t.id id,
+            t.name name,
+            t.test_plan_id test_plan_id,
+            t.task_status task_status,
+            t.cron_expression cron_expression,
+            t.remark remark,
+            t.creator_id creator_id,
+            t.updater_id updater_id,
+            t.create_time create_time,
+            t.update_time update_time,
+            tp.name test_plan_name,
+            ca.username creator_name,
+            ua.username updater_name
+        FROM sugar_task t
+        JOIN sugar_test_plan tp ON t.test_plan_id = tp.id
+        JOIN sugar_account ca ON t.creator_id = ca.id
+        LEFT JOIN sugar_account ua ON t.updater_id = ua.id
+        WHERE t.id = #{id}
+    </select>
+
+
+    <select id="queryTask" parameterType="jc.sugar.JiaHui.entity.query.TaskQuery" resultMap="SugarTask">
+        SELECT
+            st.id id,
+            st.name name,
+            st.test_plan_id test_plan_id,
+            st.task_status task_status,
+            st.cron_expression cron_expression,
+            st.remark remark,
+            st.creator_id creator_id,
+            st.updater_id updater_id,
+            st.create_time create_time,
+            st.update_time update_time,
+            ca.username creator_name,
+            ua.username updater_name,
+            tp.test_plan_name test_plan_name
+        FROM sugar_task st
+        JOIN (
+            SELECT
+                stp.id test_plan_id,
+                stp.name test_plan_name
+            FROM sugar_test_plan stp
+            JOIN sugar_account_project sap ON stp.project_id = sap.project_id
+            WHERE sap.account_id = #{accountId}
+        ) tp ON st.test_plan_id = tp.test_plan_id
+        JOIN sugar_account ca ON st.creator_id = ca.id
+        LEFT JOIN sugar_account ua ON st.updater_id = ua.id
+        <where>
+            <if test="name != null and name != ''">
+                st.name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="testPlanName != null and testPlanName != ''">
+                AND tp.test_plan_name LIKE CONCAT('%', #{testPlanName}, '%')
+            </if>
+            <if test="taskStatus != null">
+                AND st.task_status = #{taskStatus}
+            </if>
+            <if test="creatorName != null and creatorName != ''">
+                AND ca.username = #{creatorName}
+            </if>
+            <if test="createStartTime != null and createStartTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[>=]]> #{createStartTime}
+            </if>
+            <if test="createEndTime != null and createEndTime != ''">
+                AND DATE_FORMAT(r.create_time, '%Y-%m-%d') <![CDATA[<=]]> #{createEndTime}
+            </if>
+        </where>
+    </select>
+
+</mapper>

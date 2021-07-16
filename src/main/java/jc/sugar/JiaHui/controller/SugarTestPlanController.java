@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @Code 谢良基 2021/7/5
  */
@@ -92,6 +94,19 @@ public class SugarTestPlanController {
             } else {
                 throw new SugarJMXException("Execute TestPlan Failed.");
             }
+        } catch (SugarJMXException e) {
+            e.printStackTrace();
+            return new SugarResponse<>(10086, null, e.getMessage());
+        }
+    }
+
+
+    @RequestMapping("/fetch-test-plans")
+    @ResponseBody
+    public SugarResponse<List<SugarTestPlanDTO>> fetchTestPlansByAccountId(Integer accountId){
+        try {
+            List<SugarTestPlanDTO> payload = testPlanService.fetchTestPlansByAccountId(accountId);
+            return SugarResponse.success(payload, "");
         } catch (SugarJMXException e) {
             e.printStackTrace();
             return new SugarResponse<>(10086, null, e.getMessage());

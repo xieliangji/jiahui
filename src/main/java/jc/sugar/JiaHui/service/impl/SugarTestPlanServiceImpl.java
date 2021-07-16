@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.stream.Collectors;
 
 /**
  * @Code 谢良基 2021/7/5
@@ -294,6 +295,25 @@ public class SugarTestPlanServiceImpl implements SugarTestPlanService {
             });
             executeThread.start();
             return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new SugarJMXException(e);
+        }
+    }
+
+    @Override
+    public List<SugarTestPlanDTO> fetchTestPlansByAccountId(Integer accountId) throws SugarJMXException {
+        if(accountId == null){
+            throw new SugarJMXException("未指定用户ID");
+        }
+        try {
+            List<SugarTestPlan> testPlans = testPlanDao.fetchTestPlansByAccountId(accountId);
+            return testPlans.stream().map(testPlan -> {
+                SugarTestPlanDTO testPlanDTO = new SugarTestPlanDTO();
+                testPlanDTO.setId(testPlan.getId());
+                testPlanDTO.setName(testPlan.getName());
+                return testPlanDTO;
+            }).collect(Collectors.toList());
         } catch (Exception e) {
             e.printStackTrace();
             throw new SugarJMXException(e);

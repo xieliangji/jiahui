@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import jc.sugar.JiaHui.entity.SugarTestPlan;
 import jc.sugar.JiaHui.entity.query.TestPlanQuery;
 
+import java.util.List;
+
 /**
  * @Code 谢良基 2021/7/5
  */
@@ -23,4 +25,6 @@ public interface SugarTestPlanDao {
 
 
     Integer deleteTestPlanById(Integer id) throws Exception;
+
+    List<SugarTestPlan> fetchTestPlansByAccountId(Integer accountId) throws Exception;
 }

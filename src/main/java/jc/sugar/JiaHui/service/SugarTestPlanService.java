@@ -9,6 +9,8 @@ import jc.sugar.JiaHui.entity.vo.TestPlanSaveVO;
 import jc.sugar.JiaHui.entity.vo.TestPlanUpdateVO;
 import jc.sugar.JiaHui.exception.SugarJMXException;
 
+import java.util.List;
+
 /**
  * @Code 谢良基 2021/7/5
  */
@@ -30,4 +32,7 @@ public interface SugarTestPlanService {
 
 
     Boolean executeTestPlan(TestPlanExecuteVO testPlanExecuteVO) throws SugarJMXException;
+
+
+    List<SugarTestPlanDTO> fetchTestPlansByAccountId(Integer accountId) throws SugarJMXException;
 }

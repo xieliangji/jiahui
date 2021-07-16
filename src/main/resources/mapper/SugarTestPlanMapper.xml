@@ -120,4 +120,14 @@
     <delete id="deleteTestPlanById" parameterType="java.lang.Integer">
         DELETE FROM sugar_test_plan WHERE id = #{id}
     </delete>
+
+
+    <select id="fetchTestPlansByAccountId" parameterType="java.lang.Integer" resultMap="SugarTestPlan">
+        SELECT
+            stp.id id,
+            stp.name name
+        FROM sugar_test_plan stp
+        JOIN sugar_account_project sap ON stp.project_id = sap.project_id
+        WHERE sap.account_id = #{accountId}
+    </select>
 </mapper>
