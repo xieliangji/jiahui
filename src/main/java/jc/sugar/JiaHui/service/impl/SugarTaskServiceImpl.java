@@ -12,6 +12,7 @@ import jc.sugar.JiaHui.entity.vo.TaskSaveVO;
 import jc.sugar.JiaHui.entity.vo.TaskUpdateVO;
 import jc.sugar.JiaHui.exception.SugarTaskException;
 import jc.sugar.JiaHui.service.SugarTaskService;
+import jc.sugar.JiaHui.service.SugarTasksSchedulerService;
 import org.apache.commons.lang3.StringUtils;
 import org.quartz.CronExpression;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,11 @@ public class SugarTaskServiceImpl implements SugarTaskService {
     private final SugarTaskDao taskDao;
 
 
-    public SugarTaskServiceImpl(SugarTaskDao taskDao){
+    private final SugarTasksSchedulerService schedulerService;
+
+    public SugarTaskServiceImpl(SugarTaskDao taskDao, SugarTasksSchedulerService schedulerService){
         this.taskDao = taskDao;
+        this.schedulerService = schedulerService;
     }
 
     @Override
@@ -76,6 +80,13 @@ public class SugarTaskServiceImpl implements SugarTaskService {
             taskDTO.setCreatorId(task.getCreatorId());
             taskDTO.setCreatorName(task.getCreator().getUsername());
             taskDTO.setCreateTime(task.getCreateTime());
+
+            schedulerService.addSugarTask(task);
+            if(task.getTaskStatus() == 1){
+                schedulerService.enableSugarTask(task);
+            } else{
+                schedulerService.disableSugarTask(task);
+            }
             return taskDTO;
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,6 +131,13 @@ public class SugarTaskServiceImpl implements SugarTaskService {
         task.setUpdaterId(taskUpdateVO.getUpdaterId());
         try {
             taskDao.updateTask(task);
+            schedulerService.updateSugarTaskCron(task);
+            if(task.getTaskStatus() == 0){
+                schedulerService.disableSugarTask(task);
+            } else {
+                schedulerService.enableSugarTask(task);
+            }
+
             task = taskDao.fetchTaskById(task.getId());
             SugarTaskDTO taskDTO = new SugarTaskDTO();
             taskDTO.setId(task.getId());
@@ -149,13 +167,17 @@ public class SugarTaskServiceImpl implements SugarTaskService {
         }
         SugarTask task = new SugarTask();
         task.setId(id);
-        if(status == SugarTask.TaskStatus.ENABLED){
-            task.setTaskStatus(1);
-        } else {
-            task.setTaskStatus(0);
-        }
+
         try {
-            taskDao.updateTask(task);
+            if(status == SugarTask.TaskStatus.ENABLED){
+                task.setTaskStatus(1);
+                taskDao.updateTask(task);
+                schedulerService.enableSugarTask(task);
+            } else {
+                task.setTaskStatus(0);
+                taskDao.updateTask(task);
+                schedulerService.disableSugarTask(task);
+            }
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -169,7 +191,12 @@ public class SugarTaskServiceImpl implements SugarTaskService {
             return true;
         }
         try {
-            return taskDao.deleteTask(id) == 1;
+            taskDao.deleteTask(id);
+
+            SugarTask task = new SugarTask();
+            task.setId(id);
+            schedulerService.deleteSugarTask(task);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             throw new SugarTaskException(e);

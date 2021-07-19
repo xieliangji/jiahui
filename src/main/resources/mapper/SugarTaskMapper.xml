@@ -136,4 +136,7 @@
         </where>
     </select>
 
+    <select id="fetchEnableSugarIdName" resultMap="SugarTask">
+        SELECT id, name, cron_expression From sugar_task WHERE task_status = 1
+    </select>
 </mapper>

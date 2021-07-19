@@ -51,6 +51,7 @@ public class SugarTestPlanServiceImpl implements SugarTestPlanService {
 
     private final SugarReportDao reportDao;
 
+
     public SugarTestPlanServiceImpl(SugarTestPlanDao testPlanDao, SugarReportDao reportDao){
         this.testPlanDao = testPlanDao;
         this.reportDao = reportDao;
