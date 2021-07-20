@@ -34,15 +34,29 @@ public class SugarJMeterContext {
     private static String UPLOAD_ROOT;
 
 
+    private static String TEST_UPLOAD_ROOT;
+
+
     @Value("${sugar.upload-root}")
     public void setUploadRoot(String uploadRoot){
         UPLOAD_ROOT = uploadRoot;
     }
 
+
     public static String getUploadRoot(){
         return UPLOAD_ROOT;
     }
 
+
+    @Value("${sugar.test-upload-root}")
+    public void setTestUploadRoot(String testUploadRoot){
+        TEST_UPLOAD_ROOT = testUploadRoot;
+    }
+
+
+    public static String getTestUploadRoot(){
+        return TEST_UPLOAD_ROOT;
+    }
 
     public static synchronized void destroyJMeterLoader(){
         if(JMETER_LOADER != null){
@@ -85,7 +99,7 @@ public class SugarJMeterContext {
      * 创建一个返回加载libJarDirectory目录下jar包的URLClassLoader.
      * @return
      */
-    public static URLClassLoader createLibJarClassLoader(ClassLoader parent) throws IOException {
+    private static URLClassLoader createLibJarClassLoader(ClassLoader parent) throws IOException {
         List<URL> urls = new ArrayList<>();
 
         File uploadRootFile = new File(UPLOAD_ROOT);

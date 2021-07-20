@@ -11,7 +11,6 @@ import jc.sugar.JiaHui.entity.SugarTestPlan;
 import jc.sugar.JiaHui.jmeter.JMeterHashTreeUtil;
 import jc.sugar.JiaHui.jmeter.JMeterInitializer;
 import jc.sugar.JiaHui.utils.GZipUtil;
-import jc.sugar.JiaHui.utils.SugarObjectUtil;
 import org.apache.jmeter.JMeter;
 import org.apache.jmeter.engine.StandardJMeterEngine;
 import org.apache.jmeter.samplers.SampleResult;

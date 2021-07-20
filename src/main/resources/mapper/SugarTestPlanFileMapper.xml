@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="jc.sugar.JiaHui.dao.SugarTestPlanFileDao">
+    <resultMap id="TestPlanFile" type="jc.sugar.JiaHui.entity.SugarTestPlanFile">
+        <result property="id" column="id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="filePath" column="file_path"/>
+        <result property="uploaderId" column="uploader_id"/>
+        <result property="uploadTime" column="upload_time"/>
+        <association property="uploader" column="uploader_id">
+            <result column="uploader_id" property="id"/>
+            <result column="uploader_name" property="username"/>
+        </association>
+    </resultMap>
+
+    <sql id="all_cols">id, file_name, file_path, uploader_id, upload_time</sql>
+
+
+    <insert id="saveFile" parameterType="jc.sugar.JiaHui.entity.SugarTestPlanFile" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO sugar_test_plan_file (file_name, file_path, uploader_id) VALUES (#{fileName}, #{filePath}, #{uploaderId})
+    </insert>
+
+
+    <delete id="deleteFile" parameterType="java.lang.Integer">
+        DELETE FROM sugar_test_plan_file WHERE id = #{id}
+    </delete>
+</mapper>
