@@ -27,7 +27,7 @@ create table sugar_file
     uploader_id int                                 not null comment '文件上传用户ID',
     updater_id  int                                 null comment '更新人ID',
     upload_time timestamp default CURRENT_TIMESTAMP not null comment '文件上传时间',
-    update_time timestamp                           null comment '更新记录时间',
+    update_time timestamp                           null on update CURRENT_TIMESTAMP comment '文件记录最近一次更新时间',
     constraint sugar_file_id_uindex
         unique (id)
 )
@@ -101,6 +101,22 @@ create table sugar_report
 alter table sugar_report
     add primary key (id);
 
+create table sugar_task
+(
+    id              int auto_increment comment '任务ID'
+        primary key,
+    name            varchar(255)                        not null comment '任务名称',
+    test_plan_id    int                                 not null comment '关联测试计划ID',
+    task_status     int                                 not null comment '任务状态 0-禁用, 1-启用',
+    cron_expression varchar(255)                        not null comment '任务cron表达式',
+    remark          varchar(255)                        null comment '任务备注',
+    creator_id      int                                 not null comment '任务创建人',
+    create_time     timestamp default CURRENT_TIMESTAMP null comment '任务创建时间',
+    updater_id      int                                 null comment '任务最近一次更新人ID',
+    update_time     timestamp                           null on update CURRENT_TIMESTAMP comment '任务最近一次更新时间'
+)
+    comment '定时任务表';
+
 create table sugar_test_plan
 (
     id             int auto_increment comment '测试计划ID'
@@ -115,3 +131,17 @@ create table sugar_test_plan
     update_time    timestamp                           null on update CURRENT_TIMESTAMP comment '测试计划最近一次更新时间'
 )
     comment '测试计划表';
+
+create table sugar_test_plan_file
+(
+    id          int auto_increment comment '文件ID'
+        primary key,
+    file_name   varchar(255)                        not null comment '原始文件名',
+    file_path   varchar(255)                        not null comment '文件上传后的绝对路径',
+    uploader_id int                                 not null comment '上传用户ID',
+    upload_time timestamp default CURRENT_TIMESTAMP not null comment '上传时间',
+    constraint sugar_test_plan_file_file_path_uindex
+        unique (file_path)
+)
+    comment '测试计划内上传的相关文件';
+
